@@ -27,15 +27,17 @@ export const generateToken = (
 };
 
 export const verifyToken = async (
-  req: AuthRequest,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
+    const authReq = req as AuthRequest;
     const token = req.cookies.jwt;
 
     if (!token) {
       res.status(401).json({ message: "Unauthorized - No Token Provided" });
+      return;
     }
 
     const decoded = jwt.verify(
@@ -44,20 +46,22 @@ export const verifyToken = async (
     ) as JwtPayload;
 
     if (!decoded || !decoded.userId) {
-      return res.status(401).json({ message: "Unauthorized - Invalid Token" });
+      res.status(401).json({ message: "Unauthorized - Invalid Token" });
+      return;
     }
 
     const user = await User.findById(decoded.userId).select("-password");
 
     if (!user) {
       res.status(400).json({ message: "User not found" });
+      return;
     }
 
-    req.user = user;
+    authReq.user = user;
 
     next();
   } catch (error) {
     console.log(`Error in verifyToken middleware: ${error}`);
-    res.status(500).json({ message: "Internal Server Error" });
+    res.status(500).json({ message: "Internal Server Error 1" });
   }
 };

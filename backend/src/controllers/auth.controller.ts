@@ -1,4 +1,4 @@
-import { Request, RequestHandler, Response } from "express";
+import { Request, Response } from "express";
 
 import bcrypt from "bcrypt";
 
@@ -10,7 +10,8 @@ export const signup = async (req: Request, res: Response) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      res.status(400).json({ message: "All field are required" });
+      res.status(400).json({ message: "All fields are required" });
+      return;
     }
 
     const user = await User.findOne({ email });
@@ -19,6 +20,7 @@ export const signup = async (req: Request, res: Response) => {
       res
         .status(400)
         .json({ message: "Account with this email already exists" });
+      return;
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -43,12 +45,14 @@ export const login = async (req: Request, res: Response) => {
 
     if (!email || !password) {
       res.status(400).json({ message: "All field are required" });
+      return;
     }
 
     const user = await User.findOne({ email });
 
     if (!user) {
       res.status(400).json({ message: "Invalid credentials" });
+      return;
     }
 
     const isPasswordCorrect = bcrypt.compare(
@@ -58,6 +62,7 @@ export const login = async (req: Request, res: Response) => {
 
     if (!isPasswordCorrect) {
       res.status(400).json({ message: "Invalid credentials" });
+      return;
     }
 
     generateToken(user?._id, res);
@@ -83,9 +88,10 @@ export const logout = async (_: Request, res: Response) => {
   }
 };
 
-export const verifyAuth = (req: AuthRequest, res: Response) => {
+export const verifyAuth = (req: Request, res: Response) => {
   try {
-    res.status(200).json(req.user);
+    const authReq = req as AuthRequest;
+    res.status(200).json(authReq.user);
   } catch (error) {
     console.log(`Error in verifyAuth controller: ${error}`);
     res.status(500).json({ message: "Internal Server Error" });
