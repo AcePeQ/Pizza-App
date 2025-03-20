@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 
 import User from "../models/user.model";
 import { AuthRequest, generateToken } from "../middlewares/auth.middleware";
+import cloudinary from "../config/cloudinary.config";
 
 export const signup = async (req: Request, res: Response) => {
   try {
@@ -65,7 +66,7 @@ export const login = async (req: Request, res: Response) => {
       return;
     }
 
-    generateToken(user?._id, res);
+    generateToken(user._id, res);
 
     res.status(200).json({
       _id: user?._id,
@@ -74,6 +75,32 @@ export const login = async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.log(`Error in login controller: ${error}`);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+export const updateProfile = async (req: Request, res: Response) => {
+  try {
+    const authReq = req as AuthRequest;
+    const { profilePicture } = authReq.body;
+    const userId = authReq.user?._id;
+
+    if (!profilePicture) {
+      res.status(400).json({ message: "Profile picture is required" });
+      return;
+    }
+
+    const uploadResult = await cloudinary.uploader.upload(profilePicture);
+
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { profilePicture: uploadResult.secure_url },
+      { new: true }
+    ).select("-password");
+
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    console.log(`Error in updateProfile controller: ${error}`);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
