@@ -3,7 +3,7 @@ import { Request, RequestHandler, Response } from "express";
 import bcrypt from "bcrypt";
 
 import User from "../models/user.model";
-import { generateToken } from "../middlewares/auth.middleware";
+import { AuthRequest, generateToken } from "../middlewares/auth.middleware";
 
 export const signup = async (req: Request, res: Response) => {
   try {
@@ -79,6 +79,15 @@ export const logout = async (_: Request, res: Response) => {
     res.status(200).json({ message: "Logged out successfully" });
   } catch (error) {
     console.log(`Error in logout controller: ${error}`);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+export const verifyAuth = (req: AuthRequest, res: Response) => {
+  try {
+    res.status(200).json(req.user);
+  } catch (error) {
+    console.log(`Error in verifyAuth controller: ${error}`);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
