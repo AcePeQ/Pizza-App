@@ -1,5 +1,28 @@
+import { BrowserRouter, Route, Routes } from "react-router";
+import { lazy, Suspense } from "react";
+import LoaderFull from "./components/Loaders/LoaderFull/LoaderFull";
+
+const Layout = lazy(() => import("./layouts/Layout/Layout"));
+const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const MenuPage = lazy(() => import("./pages/MenuPage/MenuPage"));
+const ProfilePage = lazy(() => import("./pages/ProfilePage/ProfilePage"));
+const SettingsPage = lazy(() => import("./pages/SettingsPage/SettingsPage"));
+
 function App() {
-  return <div>App</div>;
+  return (
+    <BrowserRouter>
+      <Suspense fallback={<LoaderFull />}>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route path="/menu" element={<MenuPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+          </Route>
+        </Routes>
+      </Suspense>
+    </BrowserRouter>
+  );
 }
 
 export default App;
