@@ -5,6 +5,7 @@ import bcrypt from "bcrypt";
 import User from "../models/user.model";
 import { AuthRequest, generateToken } from "../middlewares/auth.middleware";
 import cloudinary from "../config/cloudinary.config";
+import ShippmentAddress from "../models/shippingAddress.model";
 
 export const signup = async (req: Request, res: Response) => {
   try {
@@ -32,7 +33,13 @@ export const signup = async (req: Request, res: Response) => {
       password: hashedPassword,
     });
 
+    const newShippingAddress = new ShippmentAddress({
+      ...ShippmentAddress,
+      userId: newUser._id,
+    });
+
     await newUser.save();
+    await newShippingAddress.save();
     res.status(201).json({ message: "User created successfully" });
   } catch (error) {
     console.log(`Error in signup controller: ${error}`);
