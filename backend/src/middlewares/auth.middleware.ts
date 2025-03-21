@@ -3,28 +3,14 @@ import { NextFunction, Request, Response } from "express";
 import mongoose from "mongoose";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import User, { IUser } from "../models/user.model";
+import ShippmentAddress, {
+  IShippingAddress,
+} from "../models/shippingAddress.model";
 
 export interface AuthRequest extends Request {
   user: IUser | null;
+  userShippingAddress: IShippingAddress | null;
 }
-
-export const generateToken = (
-  userId: mongoose.Types.ObjectId | undefined,
-  res: Response
-) => {
-  const token = jwt.sign({ userId }, process.env.JWT_SECRET_KEY as string, {
-    expiresIn: "7d",
-  });
-
-  res.cookie("jwt", token, {
-    maxAge: 7 * 24 * 60 * 60 * 1000,
-    httpOnly: true,
-    sameSite: "strict",
-    secure: process.env.NODE_ENV !== "development",
-  });
-
-  return token;
-};
 
 export const verifyToken = async (
   req: Request,
@@ -51,6 +37,7 @@ export const verifyToken = async (
     }
 
     const user = await User.findById(decoded.userId).select("-password");
+    const userShippingAddress = await ShippmentAddress.findById(decoded.userId);
 
     if (!user) {
       res.status(400).json({ message: "User not found" });
@@ -58,10 +45,11 @@ export const verifyToken = async (
     }
 
     authReq.user = user;
+    authReq.userShippingAddress = userShippingAddress;
 
     next();
   } catch (error) {
     console.log(`Error in verifyToken middleware: ${error}`);
-    res.status(500).json({ message: "Internal Server Error 1" });
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };

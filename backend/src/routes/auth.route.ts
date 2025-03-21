@@ -3,6 +3,7 @@ import {
   login,
   logout,
   signup,
+  updateAddress,
   updateProfile,
   verifyAuth,
 } from "../controllers/auth.controller";
@@ -16,7 +17,9 @@ router.post("/signup", signup);
 
 router.post("/logout", logout);
 
-router.post("/update-profile", verifyAuth, updateProfile);
+router.post("/update-profile", verifyToken, updateProfile);
+
+router.post("/update-address", verifyToken, updateAddress);
 
 router.get("/verifyAuth", verifyToken, verifyAuth);
 

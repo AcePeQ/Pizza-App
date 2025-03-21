@@ -1,6 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
 export interface IShippingAddress extends Document {
+  userId: mongoose.Types.ObjectId;
   firstName: string;
   lastName: string;
   email: string;
@@ -10,18 +11,18 @@ export interface IShippingAddress extends Document {
   address: string;
 }
 
-const shippingAddressSchema = new Schema({
+const shippingAddressSchema = new Schema<IShippingAddress>({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-  firstName: { type: String },
-  lastName: { type: String },
-  email: { type: String },
-  phoneNumber: { type: String },
-  city: { type: String },
-  zipCode: { type: String },
-  address: { type: String },
+  firstName: { type: String, default: "" },
+  lastName: { type: String, default: "" },
+  email: { type: String, default: "" },
+  phoneNumber: { type: String, default: "" },
+  city: { type: String, default: "" },
+  zipCode: { type: String, default: "" },
+  address: { type: String, default: "" },
 });
 
-const ShippmentAddress = mongoose.model(
+const ShippmentAddress = mongoose.model<IShippingAddress>(
   "shippingAddress",
   shippingAddressSchema
 );

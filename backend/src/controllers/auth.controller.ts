@@ -3,9 +3,10 @@ import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 
 import User from "../models/user.model";
-import { AuthRequest, generateToken } from "../middlewares/auth.middleware";
+import { AuthRequest } from "../middlewares/auth.middleware";
 import cloudinary from "../config/cloudinary.config";
 import ShippmentAddress from "../models/shippingAddress.model";
+import { generateToken } from "../utils/auth.util";
 
 export const signup = async (req: Request, res: Response) => {
   try {
@@ -63,10 +64,7 @@ export const login = async (req: Request, res: Response) => {
       return;
     }
 
-    const isPasswordCorrect = bcrypt.compare(
-      password,
-      user?.password as string
-    );
+    const isPasswordCorrect = bcrypt.compare(password, user.password as string);
 
     if (!isPasswordCorrect) {
       res.status(400).json({ message: "Invalid credentials" });
@@ -76,9 +74,9 @@ export const login = async (req: Request, res: Response) => {
     generateToken(user._id, res);
 
     res.status(200).json({
-      _id: user?._id,
-      email: user?.email,
-      profilePicture: user?.profilePicture,
+      _id: user._id,
+      email: user.email,
+      profilePicture: user.profilePicture,
     });
   } catch (error) {
     console.log(`Error in login controller: ${error}`);
@@ -89,6 +87,12 @@ export const login = async (req: Request, res: Response) => {
 export const updateProfile = async (req: Request, res: Response) => {
   try {
     const authReq = req as AuthRequest;
+
+    if (!authReq.user) {
+      res.status(401).json({ message: "Unauthorized - No User Found" });
+      return;
+    }
+
     const { profilePicture } = authReq.body;
     const userId = authReq.user?._id;
 
@@ -112,6 +116,38 @@ export const updateProfile = async (req: Request, res: Response) => {
   }
 };
 
+export const updateAddress = async (req: Request, res: Response) => {
+  try {
+    const authReq = req as AuthRequest;
+
+    if (!authReq.user) {
+      res.status(401).json({ message: "Unauthorized - No User Found" });
+      return;
+    }
+
+    if (!authReq.body) {
+      res.status(400).json({ message: "Shipping address field are required" });
+      return;
+    }
+
+    const { firstName, lastName, email, phoneNumber, city, zipCode, address } =
+      authReq.body;
+
+    const userId = authReq.user?._id;
+
+    const updatedAddress = await ShippmentAddress.findByIdAndUpdate(
+      userId,
+      { firstName, lastName, email, phoneNumber, city, zipCode, address },
+      { new: true }
+    );
+
+    res.status(200).json(updatedAddress);
+  } catch (error) {
+    console.log(`Error in updateAddress controller: ${error}`);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
 export const logout = async (_: Request, res: Response) => {
   try {
     res.cookie("jwt", "", { maxAge: 0 });
@@ -125,7 +161,16 @@ export const logout = async (_: Request, res: Response) => {
 export const verifyAuth = (req: Request, res: Response) => {
   try {
     const authReq = req as AuthRequest;
-    res.status(200).json(authReq.user);
+
+    if (!authReq.user) {
+      res.status(401).json({ message: "Unauthorized - No User Found" });
+      return;
+    }
+
+    res.status(200).json({
+      user: { ...authReq.user },
+      user_shipping_address: { ...authReq.userShippingAddress },
+    });
   } catch (error) {
     console.log(`Error in verifyAuth controller: ${error}`);
     res.status(500).json({ message: "Internal Server Error" });
