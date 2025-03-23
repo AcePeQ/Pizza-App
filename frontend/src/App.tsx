@@ -7,6 +7,7 @@ const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 const MenuPage = lazy(() => import("./pages/MenuPage/MenuPage"));
 const ProfilePage = lazy(() => import("./pages/ProfilePage/ProfilePage"));
 const SettingsPage = lazy(() => import("./pages/SettingsPage/SettingsPage"));
+const PageNotFound = lazy(() => import("./pages/PageNotFound/PageNotFound"));
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/menu" element={<MenuPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/settings" element={<SettingsPage />} />
+            <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>
       </Suspense>

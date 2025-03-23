@@ -1,10 +1,15 @@
 import { Menu, X } from "lucide-react";
 import Logo from "../Logo/Logo";
 import { useEffect, useRef, useState } from "react";
+import MainNavigation from "../Navigations/MainNavigation/MainNavigation";
+import ProfileMenu from "../ProfileMenu/ProfileMenu";
+import { useLocation } from "react-router";
 
 function MobileNavbar() {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
+
+  const location = useLocation();
 
   function handleCloseMenu() {
     setMenuOpen(false);
@@ -28,6 +33,10 @@ function MobileNavbar() {
 
     return () => document.removeEventListener("mousedown", menuClickOutside);
   }, [menuOpen]);
+
+  useEffect(() => {
+    handleCloseMenu();
+  }, [location.pathname]);
 
   return (
     <div className="flex justify-between  z-[100002] relative bg-amber-200">
@@ -56,8 +65,8 @@ function MobileNavbar() {
           menuOpen ? " translate-y-full" : "translate-y-0 pointer-events-none"
         }   transition-all justify-between items-center absolute top-0 left-0 w-full h-full `}
       >
-        <p>Navbar</p>
-        <p>Profile</p>
+        <MainNavigation />
+        <ProfileMenu />
       </div>
     </div>
   );
