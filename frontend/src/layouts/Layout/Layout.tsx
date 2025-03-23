@@ -7,7 +7,7 @@ function Layout() {
       <header className="w-full fixed top-0 left-0 z-[10000000] ">
         <MobileNavbar />
       </header>
-      <main>
+      <main className="pt-[52px]">
         <Outlet />
       </main>
       <footer></footer>
