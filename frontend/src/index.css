@@ -1,1 +1,17 @@
 @import "tailwindcss";
+
+.layout-height {
+  min-height: calc(100dvh);
+}
+
+.grid-layout {
+  grid-template-rows: 1fr max-content;
+}
+
+.menuOpen {
+  transform: translateY(100%);
+}
+
+.menuClose {
+  transform: translateY(0%);
+}
