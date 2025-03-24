@@ -1,6 +1,6 @@
 export const MainNavbarLinks = [
-  { name: "Home", path: "/" },
-  { name: "Menu", path: "/menu" },
+  { name: "Home", path: "/", icon: "pizza" },
+  { name: "Menu", path: "/menu", icon: "menu" },
 ];
 
 export const ProfileLinks = [

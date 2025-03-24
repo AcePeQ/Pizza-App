@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import MainNavigation from "../Navigations/MainNavigation/MainNavigation";
 import ProfileMenu from "../ProfileMenu/ProfileMenu";
 import { useLocation } from "react-router";
+import CartButton from "../CartButton/CartButton";
 
 function MobileNavbar() {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
@@ -43,19 +44,22 @@ function MobileNavbar() {
       <div className="flex justify-between p-1.5  relative z-[100001] w-full h-full bg-amber-500">
         <Logo />
 
-        <button
-          onClick={handleToggleMenu}
-          type="button"
-          className="cursor-pointer"
-          aria-expanded={menuOpen}
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
-        >
-          {menuOpen ? (
-            <X color="red" size={40} />
-          ) : (
-            <Menu color="red" size={40} />
-          )}
-        </button>
+        <div className="flex justify-center items-center gap-x-3">
+          <CartButton />
+          <button
+            onClick={handleToggleMenu}
+            type="button"
+            className="cursor-pointer flex justify-center items-center"
+            aria-expanded={menuOpen}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+          >
+            {menuOpen ? (
+              <X color="red" size={40} />
+            ) : (
+              <Menu color="red" size={40} />
+            )}
+          </button>
+        </div>
       </div>
 
       <div
