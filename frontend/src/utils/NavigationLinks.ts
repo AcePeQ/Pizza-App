@@ -1,9 +1,9 @@
 export const MainNavbarLinks = [
-  { name: "Home", path: "/", icon: "pizza" },
-  { name: "Menu", path: "/menu", icon: "menu" },
+  { name: "Home", path: "/", icon: "menu" },
+  { name: "Menu", path: "/menu", icon: "pizza" },
 ];
 
 export const ProfileLinks = [
-  { name: "Profile", path: "/profile" },
-  { name: "Settings", path: "/settings" },
+  { name: "Profile", path: "/profile", icon: "profile" },
+  { name: "Settings", path: "/settings", icon: "settings" },
 ];

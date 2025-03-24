@@ -8,8 +8,8 @@ function Logo() {
         src="/public/logo.png"
         alt="yummy logo of pizza without one slice"
       />
-      <p className="text-2xl font-bold tracking-wider">
-        Pizz<span>World</span>
+      <p className="font-accent text-3xl font-bold tracking-widest text-amber-500">
+        Pizz<span className="text-green-600">World</span>
       </p>
     </Link>
   );

@@ -6,17 +6,21 @@ import { Pizza, House } from "lucide-react";
 function MainNavigation() {
   return (
     <nav>
-      <ul className="flex gap-6">
+      <ul className="flex gap-4">
         {MainNavbarLinks.map((link) => (
           <li key={link.name}>
             <NavLink
-              className="flex gap-x-1 justify-center items-center"
+              className={({ isActive }) =>
+                isActive
+                  ? "flex gap-x-1.5 justify-center items-center transition-colors duration-300 text-white"
+                  : "flex gap-x-1.5 justify-center items-center transition-colors duration-300 text-amber-100 hover:text-white active:text-white"
+              }
               to={link.path}
             >
               {link.icon === "pizza" ? (
-                <Pizza size={24} color="red" />
+                <Pizza className="align-baseline" size={24} />
               ) : (
-                <House size={24} color="red" />
+                <House size={24} />
               )}
               {link.name}
             </NavLink>

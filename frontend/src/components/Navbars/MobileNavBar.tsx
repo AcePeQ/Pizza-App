@@ -40,8 +40,12 @@ function MobileNavbar() {
   }, [location.pathname]);
 
   return (
-    <div className="flex justify-between  z-[100002] relative bg-amber-200">
-      <div className="flex justify-between p-1.5  relative z-[100001] w-full h-full bg-amber-500">
+    <div className="flex justify-between  z-[100002] relative ">
+      <div
+        className={`flex justify-between p-1.5 transition-all duration-500 relative z-[100001] w-full h-full bg-stone-800 ${
+          menuOpen ? "" : "shadow-lg shadow-stone-900/30"
+        } `}
+      >
         <Logo />
 
         <div className="flex justify-center items-center gap-x-3">
@@ -49,15 +53,11 @@ function MobileNavbar() {
           <button
             onClick={handleToggleMenu}
             type="button"
-            className="cursor-pointer flex justify-center items-center"
+            className="cursor-pointer flex justify-center items-center transition-colors duration-300 text-amber-100 hover:text-white active:text-white"
             aria-expanded={menuOpen}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
           >
-            {menuOpen ? (
-              <X color="red" size={40} />
-            ) : (
-              <Menu color="red" size={40} />
-            )}
+            {menuOpen ? <X size={40} /> : <Menu size={40} />}
           </button>
         </div>
       </div>
@@ -65,9 +65,11 @@ function MobileNavbar() {
       <div
         ref={menuRef}
         aria-hidden={!menuOpen}
-        className={`flex z-[100000] p-1.5  duration-1000 bg-amber-900 ${
-          menuOpen ? " translate-y-full" : "translate-y-0 pointer-events-none"
-        }   transition-all justify-between items-center absolute top-0 left-0 w-full h-full `}
+        className={`flex z-[100000] p-1.5  duration-1000 bg-stone-700 ${
+          menuOpen
+            ? " translate-y-full shadow-lg shadow-stone-900/30"
+            : "translate-y-0 pointer-events-none"
+        }   transition-all justify-between items-center absolute top-0 left-0 w-full h-full text-lg font-bold`}
       >
         <MainNavigation />
         <ProfileMenu />
