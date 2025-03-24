@@ -46,9 +46,13 @@ function ProfileMenu() {
         aria-label={menuOpen ? "Close menu" : "Open menu"}
         onClick={handleToggleMenu}
         aria-expanded={menuOpen}
-        className="flex cursor-pointer rounded-full bg-red-700 w-9 h-9"
+        className="flex cursor-pointer rounded-full  w-9.5 h-9.5"
       >
-        {/* <img src="" alt="user profile photography" /> */}
+        <img
+          className="pointer-events-none"
+          src="/avatar.png"
+          alt="user profile photography"
+        />
       </button>
 
       <nav
