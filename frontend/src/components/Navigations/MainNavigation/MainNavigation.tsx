@@ -6,7 +6,7 @@ import { Pizza, House } from "lucide-react";
 function MainNavigation() {
   return (
     <nav>
-      <ul className="flex gap-4">
+      <ul className="flex gap-3">
         {MainNavbarLinks.map((link) => (
           <li key={link.name}>
             <NavLink

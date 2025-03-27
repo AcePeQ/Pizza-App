@@ -5,6 +5,8 @@ import MainNavigation from "../Navigations/MainNavigation/MainNavigation";
 import ProfileMenu from "../ProfileMenu/ProfileMenu";
 import { useLocation } from "react-router";
 import CartButton from "../CartButton/CartButton";
+import SignUpButton from "../SignUpButton/SignUpButton";
+import SignInButton from "../SignInButton/SignInButton";
 
 function MobileNavbar() {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
@@ -22,6 +24,8 @@ function MobileNavbar() {
 
   useEffect(() => {
     function menuClickOutside(e: Event) {
+      const target = e.target as HTMLButtonElement;
+
       if (
         menuOpen &&
         (!menuRef.current || !menuRef.current.contains(e.target as Node))
@@ -72,7 +76,11 @@ function MobileNavbar() {
         }   transition-all justify-between items-center absolute top-0 left-0 w-full h-full text-lg font-bold`}
       >
         <MainNavigation />
-        <ProfileMenu />
+        {/* <ProfileMenu /> */}
+        <div className="flex gap-2.5">
+          <SignUpButton onMenuClose={handleCloseMenu} />
+          <SignInButton onMenuClose={handleCloseMenu} />
+        </div>
       </div>
     </div>
   );
