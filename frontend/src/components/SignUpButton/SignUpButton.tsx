@@ -22,7 +22,7 @@ function SignUpButton({ onMenuClose }: { onMenuClose: () => void }) {
       </Button>
 
       {isSignUpModalOpen && (
-        <Modal title="Sign up" onCloseModal={handleCloseModalSignUp}>
+        <Modal title="Login" onCloseModal={handleCloseModalSignUp}>
           <ModalSignUp />
         </Modal>
       )}
