@@ -4,7 +4,7 @@ import Modal from "../Modals/Modal";
 import ModalSignUp from "../Modals/ModalSignUp/ModalSignUp";
 
 function SignUpButton({ onMenuClose }: { onMenuClose: () => void }) {
-  const { setSignUpModalStatus } = useModalStore();
+  const { isSignUpModalOpen, setSignUpModalStatus } = useModalStore();
 
   function handleClickButton() {
     onMenuClose();
@@ -17,13 +17,15 @@ function SignUpButton({ onMenuClose }: { onMenuClose: () => void }) {
 
   return (
     <>
-      <Button type="primary" size="sm" onClick={() => handleClickButton}>
+      <Button type="primary" size="sm" onClick={handleClickButton}>
         Sign up
       </Button>
 
-      <Modal title="Sign up" onCloseModal={handleCloseModalSignUp}>
-        <ModalSignUp />
-      </Modal>
+      {isSignUpModalOpen && (
+        <Modal title="Sign up" onCloseModal={handleCloseModalSignUp}>
+          <ModalSignUp />
+        </Modal>
+      )}
     </>
   );
 }

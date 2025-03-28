@@ -14,7 +14,7 @@ function SignInButton({ onMenuClose }: { onMenuClose: () => void }) {
   }
 
   return (
-    <Button onClick={() => handleClickButton} type="secondary" size="sm">
+    <Button onClick={handleClickButton} type="secondary" size="sm">
       Sign In
     </Button>
   );

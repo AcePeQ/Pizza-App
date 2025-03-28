@@ -17,11 +17,14 @@ function Modal({
         onClick={onCloseModal}
         className="fixed top-0 left-0 w-full h-full bg-stone-900/75 z-[1000000000000] cursor-pointer"
       ></div>
-      <div className="fixed top-6/12 left-6/12 -translate-6/12  z-[1000000000001]">
-        <div className="text-amber-50 bg-stone-800 px-6.5 py-4 rounded-lg">
-          <h2 className="text-3xl font-semibold relative px-8 text-nowrap">
+      <div className="fixed top-6/12 left-6/12 -translate-6/12 w-full z-[1000000000001]">
+        <div className="text-amber-50 bg-stone-800 px-6.5 py-4 ">
+          <h2 className="text-3xl font-semibold text-center relative px-8 text-nowrap">
             {title}
-            <button className="absolute cursor-pointer -top-2 -right-5 transition-colors duration-300 hover:text-red-500 active:text-red-600">
+            <button
+              onClick={onCloseModal}
+              className="absolute cursor-pointer -top-2 -right-5 transition-colors duration-300 hover:text-red-500 active:text-red-600"
+            >
               <X size={28} />
             </button>
           </h2>

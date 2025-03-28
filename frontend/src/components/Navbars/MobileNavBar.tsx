@@ -24,8 +24,6 @@ function MobileNavbar() {
 
   useEffect(() => {
     function menuClickOutside(e: Event) {
-      const target = e.target as HTMLButtonElement;
-
       if (
         menuOpen &&
         (!menuRef.current || !menuRef.current.contains(e.target as Node))
@@ -68,10 +66,10 @@ function MobileNavbar() {
 
       <div
         ref={menuRef}
-        aria-hidden={!menuOpen}
+        aria-hidden={menuOpen}
         className={`flex z-[100000] p-1.5  duration-1000 bg-stone-700 ${
           menuOpen
-            ? " translate-y-full shadow-lg shadow-stone-900/30"
+            ? "translate-y-full shadow-lg shadow-stone-900/30"
             : "translate-y-0 pointer-events-none"
         }   transition-all justify-between items-center absolute top-0 left-0 w-full h-full text-lg font-bold`}
       >
