@@ -52,3 +52,7 @@ Hover: hover:bg-stone-600 hover:text-white
 :global(a.active) {
   background-color: red;
 }
+
+.hero-height {
+  min-height: calc(100dvh - 52px);
+}
