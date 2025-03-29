@@ -28,11 +28,13 @@ function Button({
     sizeClass = `px-2 py-0.5 rounded-md`;
   } else if (size === "normal") {
     sizeClass = `px-4 py-1 rounded-md text-xl tracking-wide`;
+  } else if (size === "big") {
+    sizeClass = `px-6 py-2.5 rounded-md text-xl tracking-wide`;
   }
 
   return (
     <button
-      className={`inline-block cursor-pointer transition-colors duration-[400ms] shadow-md shadow-stone-900/30 ${typeClass} ${sizeClass}`}
+      className={`inline-block cursor-pointer transition-colors duration-[400ms] shadow-md shadow-stone-900/30  ${typeClass} ${sizeClass}`}
       onClick={onClick}
       type={buttonType}
     >
