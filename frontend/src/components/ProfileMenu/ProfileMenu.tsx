@@ -58,10 +58,10 @@ function ProfileMenu() {
       <nav
         aria-hidden={!menuOpen}
         ref={menuRef}
-        className={`absolute -right-2 p-2 mt-1 bg-stone-700 transition-[transform, box-shadow]  duration-1000 rounded-bl-md  ${
+        className={`absolute -right-2 p-2 mt-1 bg-stone-700 transition-[transform, box-shadow]  duration-700 ease-in-out rounded-bl-md  ${
           menuOpen
             ? "translate-0 shadow-md shadow-stone-900/30"
-            : "translate-x-full pointer-events-none "
+            : "translate-x-full pointer-events-none invisible"
         } `}
       >
         <ul className="flex flex-col gap-2.5">

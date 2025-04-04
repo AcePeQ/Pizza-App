@@ -8,7 +8,7 @@ function Stats() {
           We don't count calories, Just slices!
         </h2>
 
-        <article className="flex flex-col gap-1">
+        <article className="flex flex-col gap-2.5">
           <StatCard statText="50,000+" subText="🍕 Pizza Sold" />
           <StatCard statText="100,000+" subText="🧑‍🍳 Served Pizza Lovers" />
           <StatCard
