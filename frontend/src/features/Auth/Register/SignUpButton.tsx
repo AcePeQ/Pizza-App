@@ -1,7 +1,7 @@
-import { useModalStore } from "../../store/useModalStore";
-import Button from "../Button/Button";
-import Modal from "../Modals/Modal";
-import ModalSignUp from "../Modals/ModalSignUp/ModalSignUp";
+import { useModalStore } from "../../../store/useModalStore";
+import Button from "../../../components/Button/Button";
+import Modal from "../../../components/Modals/Modal";
+import ModalSignUp from "../../../components/Modals/ModalSignUp/ModalSignUp";
 
 function SignUpButton({ onMenuClose }: { onMenuClose: () => void }) {
   const { isSignUpModalOpen, setSignUpModalStatus } = useModalStore();
@@ -22,7 +22,7 @@ function SignUpButton({ onMenuClose }: { onMenuClose: () => void }) {
       </Button>
 
       {isSignUpModalOpen && (
-        <Modal title="Login" onCloseModal={handleCloseModalSignUp}>
+        <Modal title="Register" onCloseModal={handleCloseModalSignUp}>
           <ModalSignUp />
         </Modal>
       )}

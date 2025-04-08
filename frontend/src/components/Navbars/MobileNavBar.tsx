@@ -5,8 +5,8 @@ import MainNavigation from "../Navigations/MainNavigation/MainNavigation";
 import ProfileMenu from "../ProfileMenu/ProfileMenu";
 import { useLocation } from "react-router";
 import CartButton from "../CartButton/CartButton";
-import SignUpButton from "../SignUpButton/SignUpButton";
-import SignInButton from "../SignInButton/SignInButton";
+import SignUpButton from "../../features/Auth/Register/SignUpButton";
+import SignInButton from "../../features/Auth/Login/SignInButton";
 
 function MobileNavbar() {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);

@@ -1,7 +1,7 @@
-import { useModalStore } from "../../store/useModalStore";
-import Button from "../Button/Button";
-import Modal from "../Modals/Modal";
-import ModalSignIn from "../Modals/ModalSignIn/ModalSignIn";
+import { useModalStore } from "../../../store/useModalStore";
+import Button from "../../../components/Button/Button";
+import Modal from "../../../components/Modals/Modal";
+import ModalSignIn from "../../../components/Modals/ModalSignIn/ModalSignIn";
 
 function SignInButton({ onMenuClose }: { onMenuClose: () => void }) {
   const { isSignInModalOpen, setSignInModalStatus } = useModalStore();
@@ -22,7 +22,7 @@ function SignInButton({ onMenuClose }: { onMenuClose: () => void }) {
       </Button>
 
       {isSignInModalOpen && (
-        <Modal title="Register" onCloseModal={handleCloseModalSignIn}>
+        <Modal title="Login" onCloseModal={handleCloseModalSignIn}>
           <ModalSignIn />
         </Modal>
       )}
