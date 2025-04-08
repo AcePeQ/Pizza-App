@@ -1,6 +1,7 @@
 import AboutUs from "../../components/AboutUs/AboutUs";
 import Hero from "../../components/Hero/Hero";
 import Stats from "../../components/Stats/Stats";
+import WorkSteps from "../../components/WorkSteps/WorkSteps";
 
 function HomePage() {
   return (
@@ -8,6 +9,7 @@ function HomePage() {
       <Hero />
       <Stats />
       <AboutUs />
+      <WorkSteps />
     </div>
   );
 }
