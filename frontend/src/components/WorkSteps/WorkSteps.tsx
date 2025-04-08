@@ -8,8 +8,10 @@ function WorkSteps() {
         <span className="inline-block relative z-2 text-amber-50">
           work?
           <img
+            aria-hidden="true"
             className="absolute -top-5 -left-0.5 -z-1 inline-block"
             src="/public/blob.svg"
+            alt="green blob covering work letters"
           />
         </span>
       </h2>

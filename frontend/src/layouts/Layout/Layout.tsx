@@ -11,7 +11,7 @@ function Layout() {
       <main className="mt-[52px]">
         <Outlet />
       </main>
-      <footer className="flex flex-col gap-4 px-1 py-6 bg-stone-800 text-amber-50">
+      <footer className="flex flex-col gap-4 px-1 py-6 bg-stone-800 text-amber-50 border-t-2 border-amber-50">
         <Footer />
       </footer>
     </div>

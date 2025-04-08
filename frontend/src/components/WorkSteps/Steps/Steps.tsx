@@ -59,6 +59,7 @@ function Steps() {
 
       <div className="flex mt-5 gap-4">
         <button
+          aria-label="previous"
           onClick={handlePrevious}
           disabled={currentStep <= 0 ? true : false}
           className="cursor-pointer text-green-700 hover:text-green-800 active:text-green-700 transition-colors duration-500 disabled:text-stone-500"
@@ -66,6 +67,7 @@ function Steps() {
           <CircleArrowLeft size={42} />
         </button>
         <button
+          aria-label="next"
           onClick={handleNext}
           disabled={currentStep >= workSteps.length - 1 ? true : false}
           className="cursor-pointer text-green-700 hover:text-green-800 active:text-green-700 transition-colors duration-500 disabled:text-stone-500"
