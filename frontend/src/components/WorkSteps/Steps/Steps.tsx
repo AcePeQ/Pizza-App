@@ -42,8 +42,11 @@ function Steps() {
   }
 
   return (
-    <div>
-      <img className="w-10/12 mx-auto " src="/plane-world.png" />
+    <div className="max-w-[640px] mx-auto md:grid md:grid-cols-2 md:gap-x-14 md:max-w-7xl md:items-center">
+      <img
+        className="max-w-[320px] mx-auto lg:max-w-[560px] lg:w-full "
+        src="/plane-world.png"
+      />
 
       <div className="mt-8">
         <p className="font-bold text-lg inline-block relative tracking-wide mb-3 before:content-[''] before:absolute before:-bottom-0.5 before:left-0 before:w-full before:h-1 before:bg-green-700 before:rounded-sm">
@@ -55,25 +58,25 @@ function Steps() {
         <p className="mt-3 font-medium ">
           {workSteps[currentStep].description}
         </p>
-      </div>
 
-      <div className="flex mt-5 gap-4">
-        <button
-          aria-label="previous"
-          onClick={handlePrevious}
-          disabled={currentStep <= 0 ? true : false}
-          className="cursor-pointer text-green-700 hover:text-green-800 active:text-green-700 transition-colors duration-500 disabled:text-stone-500"
-        >
-          <CircleArrowLeft size={42} />
-        </button>
-        <button
-          aria-label="next"
-          onClick={handleNext}
-          disabled={currentStep >= workSteps.length - 1 ? true : false}
-          className="cursor-pointer text-green-700 hover:text-green-800 active:text-green-700 transition-colors duration-500 disabled:text-stone-500"
-        >
-          <CircleArrowRight size={42} />
-        </button>
+        <div className="flex mt-5 gap-4">
+          <button
+            aria-label="previous"
+            onClick={handlePrevious}
+            disabled={currentStep <= 0 ? true : false}
+            className="cursor-pointer text-green-700 hover:text-green-800 active:text-green-700 transition-colors duration-500 disabled:text-stone-500"
+          >
+            <CircleArrowLeft size={42} />
+          </button>
+          <button
+            aria-label="next"
+            onClick={handleNext}
+            disabled={currentStep >= workSteps.length - 1 ? true : false}
+            className="cursor-pointer text-green-700 hover:text-green-800 active:text-green-700 transition-colors duration-500 disabled:text-stone-500"
+          >
+            <CircleArrowRight size={42} />
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -7,11 +7,11 @@ const stats = [
 
 function AboutUs() {
   return (
-    <div className="relative isolate  overflow-hidden py-24 sm:py-32">
+    <div className="relative isolate overflow-hidden py-24 sm:py-48 2xl:py-64">
       <img
         alt="pizza local at night"
         src="/backgrounds/bg-aboutme.jpg"
-        className="absolute inset-0 -z-10 size-full object-cover object-right md:object-center"
+        className="absolute inset-0 -z-10 size-full object-cover object-center"
       />
       <div className="absolute top-0 left-0 w-full h-full bg-linear-to-r from-stone-800/85 to-stone-800/85"></div>
 
