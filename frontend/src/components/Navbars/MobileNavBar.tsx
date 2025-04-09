@@ -42,7 +42,7 @@ function MobileNavbar() {
   }, [location.pathname]);
 
   return (
-    <div className="flex justify-between  z-[100002] relative ">
+    <div className="flex justify-between z-[100002] relative ">
       <div
         className={`flex justify-between p-1.5 transition-all duration-500 relative z-[100001] w-full h-full bg-stone-800 ${
           menuOpen ? "" : "shadow-lg shadow-stone-900/30"
@@ -51,7 +51,7 @@ function MobileNavbar() {
         <Logo />
 
         <div className="flex justify-center items-center gap-x-3">
-          <CartButton />
+          {/* <CartButton /> */}
           <button
             onClick={handleToggleMenu}
             type="button"

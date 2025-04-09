@@ -2,9 +2,13 @@ import { useModalStore } from "../../../store/useModalStore";
 import Button from "../../../components/Button/Button";
 import Modal from "../../../components/Modals/Modal";
 import ModalSignUp from "../../../components/Modals/ModalSignUp/ModalSignUp";
+import { useMediaQuery } from "react-responsive";
 
 function SignUpButton({ onMenuClose }: { onMenuClose: () => void }) {
   const { isSignUpModalOpen, setSignUpModalStatus } = useModalStore();
+  const isDesktop = useMediaQuery({
+    query: "(max-width: 1024px)",
+  });
 
   function handleClickButton() {
     onMenuClose();
@@ -17,7 +21,11 @@ function SignUpButton({ onMenuClose }: { onMenuClose: () => void }) {
 
   return (
     <>
-      <Button type="primary" size="sm" onClick={handleClickButton}>
+      <Button
+        type="primary"
+        size={`${!isDesktop ? "normal" : "sm"}`}
+        onClick={handleClickButton}
+      >
         Sign up
       </Button>
 

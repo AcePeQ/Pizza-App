@@ -1,12 +1,18 @@
 import { Outlet } from "react-router";
 import MobileNavbar from "../../components/Navbars/MobileNavBar";
 import Footer from "../../components/Footer/Footer";
+import DesktopNavbar from "../../components/Navbars/DesktopNavbar";
+import { useMediaQuery } from "react-responsive";
 
 function Layout() {
+  const isDesktop = useMediaQuery({
+    query: "(max-width: 1024px)",
+  });
+
   return (
     <div className="font-body  grid grid-cols-1 grid-layout layout-height bg-amber-50 text-stone-800">
-      <header className="w-full fixed top-0 left-0 z-[10000000] ">
-        <MobileNavbar />
+      <header className="w-full fixed top-0 left-0 z-[10000000] h-[52px]">
+        {!isDesktop ? <DesktopNavbar /> : <MobileNavbar />}
       </header>
       <main className="mt-[52px]">
         <Outlet />
