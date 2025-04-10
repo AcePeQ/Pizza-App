@@ -18,11 +18,11 @@ function Button({
   let sizeClass, typeClass;
 
   if (type === "primary") {
-    typeClass = `bg-green-700 text-white hover:bg-green-800 active:bg-green-800`;
+    typeClass = `bg-green-700 text-white hover:bg-green-800 active:bg-green-800 disabled:bg-green-950 disabled:cursor-not-allowed`;
   } else if (type === "secondary") {
-    typeClass = `bg-transparent text-white border-3 border-stone-700 hover:bg-stone-900 hover:border-stone-900`;
+    typeClass = `bg-transparent text-white border-3 border-stone-700 hover:bg-stone-900 hover:border-stone-900 disabled:bg-stone-950 disabled:border-stone-950 disabled:cursor-not-allowed`;
   } else if (type === "tertiary") {
-    typeClass = `bg-transparent text-white border-3 border-stone-700 hover:bg-stone-700 hover:text-amber-50`;
+    typeClass = `bg-transparent text-white border-3 border-stone-700 hover:bg-stone-700 hover:text-amber-50 disabled:bg-stone-950 disabled:border-stone-950 disabled:cursor-not-allowed`;
   }
 
   if (size === "sm") {
