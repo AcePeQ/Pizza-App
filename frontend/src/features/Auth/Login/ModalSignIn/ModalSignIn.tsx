@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { useModalStore } from "../../../store/useModalStore";
+
 import { SubmitHandler, useForm } from "react-hook-form";
-import FormInput from "../../FormInput/FormInput";
+
 import { Eye, EyeOff } from "lucide-react";
-import Button from "../../Button/Button";
+import { useModalStore } from "../../../../store/useModalStore";
+import FormInput from "../../../../components/FormInput/FormInput";
+import Button from "../../../../components/Button/Button";
 
 export interface SignInInputs {
   email: string;

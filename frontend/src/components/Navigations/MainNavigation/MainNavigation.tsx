@@ -3,8 +3,6 @@ import { MainNavbarLinks } from "../../../utils/NavigationLinks";
 
 import { Pizza, House } from "lucide-react";
 
-// 1024 - 32
-
 function MainNavigation() {
   return (
     <nav className="lg:flex lg:items-center lg:text-[22px] lg:justify-center">

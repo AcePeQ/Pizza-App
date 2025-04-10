@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { MouseEventHandler, ReactElement } from "react";
 
 function Button({
   children,
@@ -6,20 +6,21 @@ function Button({
   type = "primary",
   buttonType = "button",
   onClick,
+  isDisabled,
 }: {
   children: ReactElement | string;
   size: string;
   buttonType?: "button" | "submit" | "reset";
   type: string;
-
-  onClick?: () => void;
+  isDisabled?: boolean;
+  onClick?: MouseEventHandler;
 }) {
   let sizeClass, typeClass;
 
   if (type === "primary") {
     typeClass = `bg-green-700 text-white hover:bg-green-800 active:bg-green-800`;
   } else if (type === "secondary") {
-    typeClass = `bg-transparent text-white border-3 border-stone-800 hover:bg-stone-800`;
+    typeClass = `bg-transparent text-white border-3 border-stone-700 hover:bg-stone-900 hover:border-stone-900`;
   } else if (type === "tertiary") {
     typeClass = `bg-transparent text-white border-3 border-stone-700 hover:bg-stone-700 hover:text-amber-50`;
   }
@@ -37,6 +38,7 @@ function Button({
       className={`inline-block cursor-pointer transition-colors duration-[400ms] shadow-md shadow-stone-900/30  ${typeClass} ${sizeClass}`}
       onClick={onClick}
       type={buttonType}
+      disabled={isDisabled}
     >
       {children}
     </button>

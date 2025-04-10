@@ -1,8 +1,9 @@
 import { useModalStore } from "../../../store/useModalStore";
 import Button from "../../../components/Button/Button";
 import Modal from "../../../components/Modals/Modal";
-import ModalSignUp from "../../../components/Modals/ModalSignUp/ModalSignUp";
+
 import { useMediaQuery } from "react-responsive";
+import ModalSignUp from "./ModalSignUp/ModalSignUp";
 
 function SignUpButton({ onMenuClose }: { onMenuClose: () => void }) {
   const { isSignUpModalOpen, setSignUpModalStatus } = useModalStore();
@@ -26,7 +27,7 @@ function SignUpButton({ onMenuClose }: { onMenuClose: () => void }) {
         size={`${!isDesktop ? "normal" : "sm"}`}
         onClick={handleClickButton}
       >
-        Sign up
+        Register
       </Button>
 
       {isSignUpModalOpen && (

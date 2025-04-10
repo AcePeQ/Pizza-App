@@ -10,9 +10,9 @@ import { generateToken } from "../utils/auth.util";
 
 export const signup = async (req: Request, res: Response) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, displayName } = req.body;
 
-    if (!email || !password) {
+    if (!email || !password || !displayName) {
       res.status(400).json({ message: "All fields are required" });
       return;
     }
@@ -32,6 +32,7 @@ export const signup = async (req: Request, res: Response) => {
     const newUser = new User({
       email,
       password: hashedPassword,
+      displayName,
     });
 
     const newShippingAddress = new ShippmentAddress({
@@ -77,6 +78,7 @@ export const login = async (req: Request, res: Response) => {
       _id: user._id,
       email: user.email,
       profilePicture: user.profilePicture,
+      displayName: user.displayName,
     });
   } catch (error) {
     console.log(`Error in login controller: ${error}`);

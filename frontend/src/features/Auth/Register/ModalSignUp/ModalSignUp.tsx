@@ -1,9 +1,11 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import FormInput from "../../FormInput/FormInput";
+
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
-import Button from "../../Button/Button";
-import { useModalStore } from "../../../store/useModalStore";
+import { useModalStore } from "../../../../store/useModalStore";
+import FormInput from "../../../../components/FormInput/FormInput";
+import Button from "../../../../components/Button/Button";
+import { useRegister } from "../../useRegister";
 
 export interface SignUpInputs {
   displayName: string;
@@ -14,6 +16,7 @@ export interface SignUpInputs {
 const inputStyles = `bg-amber-50 text-stone-800 border-none px-1.5 py-0.5 text-semibold rounded-[0.125rem] transition-all duration-500 outline-2 outline-offset-1 outline-transparent focus-within:outline-2 focus-within:outline-offset-1 focus-within:outline-amber-50 text-xl`;
 
 function ModalSignUp() {
+  const { isCreatingAccount, createAccount } = useRegister();
   const { setSignUpModalStatus } = useModalStore();
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
@@ -22,7 +25,7 @@ function ModalSignUp() {
   }
 
   const onSubmit: SubmitHandler<SignUpInputs> = (data) => {
-    console.log(data);
+    createAccount(data);
   };
 
   const {
@@ -32,7 +35,7 @@ function ModalSignUp() {
   } = useForm<SignUpInputs>();
 
   return (
-    <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
+    <form className="flex flex-col gap-3 " onSubmit={handleSubmit(onSubmit)}>
       <FormInput
         label="Display Name"
         error={errors.displayName?.message as string}
@@ -85,7 +88,12 @@ function ModalSignUp() {
       <hr className="mb-2 mt-3 bg-stone-400" />
 
       <div className="flex justify-between">
-        <Button buttonType="submit" type="primary" size="normal">
+        <Button
+          isDisabled={isCreatingAccount}
+          buttonType="submit"
+          type="primary"
+          size="normal"
+        >
           Register
         </Button>
         <Button
@@ -93,6 +101,7 @@ function ModalSignUp() {
           buttonType="button"
           type="tertiary"
           size="normal"
+          isDisabled={isCreatingAccount}
         >
           Close
         </Button>
