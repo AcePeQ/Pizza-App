@@ -20,19 +20,25 @@ function ModalSignUp() {
   const { setSignUpModalStatus } = useModalStore();
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<SignUpInputs>();
+
   function handleCloseModal() {
     setSignUpModalStatus(false);
   }
 
   const onSubmit: SubmitHandler<SignUpInputs> = (data) => {
-    createAccount(data);
+    createAccount(data, {
+      onSuccess: () => handleCloseModal(),
+      onError: () => {
+        reset();
+      },
+    });
   };
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<SignUpInputs>();
 
   return (
     <form className="flex flex-col gap-3 " onSubmit={handleSubmit(onSubmit)}>
@@ -66,10 +72,10 @@ function ModalSignUp() {
         inputId="password"
         error={errors.password?.message as string}
       >
-        <>
+        <div className="relative w-full">
           <input
             type={`${showPassword ? "text" : "password"}`}
-            className={`${inputStyles} pr-11`}
+            className={`${inputStyles} pr-11 w-full`}
             id="password"
             {...register("password", {
               required: "Password field is required",
@@ -82,7 +88,7 @@ function ModalSignUp() {
           >
             {showPassword ? <Eye size={28} /> : <EyeOff size={28} />}
           </button>
-        </>
+        </div>
       </FormInput>
 
       <hr className="mb-2 mt-3 bg-stone-400" />

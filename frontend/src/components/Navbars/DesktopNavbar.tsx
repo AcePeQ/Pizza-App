@@ -12,7 +12,7 @@ function DesktopNavbar() {
   }
 
   return (
-    <div className="flex w-fill h-full justify-between z-[100002] relative ">
+    <div className="flex w-fill h-full justify-between z-[90] relative ">
       <div className="grid grid-cols-3 p-1.5 transition-all duration-500 relative z-[100001] w-full h-full shadow-lg shadow-stone-900/30 bg-stone-800">
         <Logo />
         <MainNavigation />

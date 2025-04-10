@@ -42,7 +42,7 @@ function MobileNavbar() {
   }, [location.pathname]);
 
   return (
-    <div className="flex justify-between z-[100002] relative ">
+    <div className="flex justify-between z-[90] relative ">
       <div
         className={`flex justify-between p-1.5 transition-all duration-500 relative z-[100001] w-full h-full bg-stone-800 ${
           menuOpen ? "" : "shadow-lg shadow-stone-900/30"

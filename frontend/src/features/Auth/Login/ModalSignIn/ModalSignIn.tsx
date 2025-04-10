@@ -50,10 +50,10 @@ function ModalSignIn() {
         inputId="password"
         error={errors.password?.message as string}
       >
-        <>
+        <div className="relative w-full">
           <input
             type={`${showPassword ? "text" : "password"}`}
-            className={`${inputStyles} pr-11`}
+            className={`${inputStyles} pr-11 w-full`}
             id="password"
             {...register("password", {
               required: "Password field is required",
@@ -66,7 +66,7 @@ function ModalSignIn() {
           >
             {showPassword ? <Eye size={28} /> : <EyeOff size={28} />}
           </button>
-        </>
+        </div>
       </FormInput>
 
       <hr className="mb-2 mt-3 bg-stone-400" />

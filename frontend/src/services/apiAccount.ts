@@ -1,3 +1,5 @@
+import toast from "react-hot-toast";
+
 export interface IRegisterData {
   email: string;
   password: string;
@@ -14,11 +16,9 @@ export async function createAccountApi(accountData: IRegisterData) {
       body: JSON.stringify(accountData),
     });
 
-    console.log(res);
-
     if (!res.ok) {
       const error = await res.json();
-      console.log(error);
+      toast.error(error.message);
 
       throw new Error(error.message);
     }

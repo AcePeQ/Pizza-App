@@ -1,12 +1,12 @@
 import { useMutation } from "@tanstack/react-query";
 import { createAccountApi, IRegisterData } from "../../services/apiAccount";
+import toast from "react-hot-toast";
 
 export function useRegister() {
   const { isPending: isCreatingAccount, mutate: createAccount } = useMutation({
     mutationFn: (data: IRegisterData) => createAccountApi(data),
-    onSuccess: () => {},
-    onError: (error) => {
-      console.log(error);
+    onSuccess: (data) => {
+      toast.success(data.message);
     },
   });
 
