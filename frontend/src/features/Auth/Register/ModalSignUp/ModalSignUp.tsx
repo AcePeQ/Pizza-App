@@ -52,6 +52,10 @@ function ModalSignUp() {
           id="displayName"
           {...register("displayName", {
             required: "Display Name field is required",
+            min: {
+              value: "4",
+              message: "Display Name must be longer than 3 characters",
+            },
           })}
         />
       </FormInput>
@@ -63,6 +67,10 @@ function ModalSignUp() {
           id="email"
           {...register("email", {
             required: "Email field is required",
+            pattern: {
+              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+              message: `Invalid email format`,
+            },
           })}
         />
       </FormInput>
@@ -79,6 +87,12 @@ function ModalSignUp() {
             id="password"
             {...register("password", {
               required: "Password field is required",
+              pattern: {
+                value:
+                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                message:
+                  "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character",
+              },
             })}
           />
           <button

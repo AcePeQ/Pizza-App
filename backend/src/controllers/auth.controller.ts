@@ -17,12 +17,32 @@ export const signup = async (req: Request, res: Response) => {
       return;
     }
 
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (!emailRegex.test(email)) {
+      res.status(400).json({ message: "Invalid email format" });
+      return;
+    }
+
     const user = await User.findOne({ email });
 
     if (user) {
       res
         .status(400)
         .json({ message: "Account with this email already exists" });
+      return;
+    }
+
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    if (!passwordRegex.test(password)) {
+      res.status(400).json({ message: "Invalid password format" });
+      return;
+    }
+
+    if (displayName.length <= 3) {
+      res.status(400).json({ message: "Invalid display name format" });
       return;
     }
 
