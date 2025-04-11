@@ -6,6 +6,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { useModalStore } from "../../../../store/useModalStore";
 import FormInput from "../../../../components/FormInput/FormInput";
 import Button from "../../../../components/Button/Button";
+import { useLogin } from "../../useLogin";
 
 export interface SignInInputs {
   email: string;
@@ -15,6 +16,7 @@ export interface SignInInputs {
 const inputStyles = `bg-amber-50 text-stone-800 border-none px-1.5 py-0.5 text-semibold rounded-[0.125rem] transition-all duration-500 outline-2 outline-offset-1 outline-transparent focus-within:outline-2 focus-within:outline-offset-1 focus-within:outline-amber-50 text-xl`;
 
 function ModalSignIn() {
+  const { isLoginToAccount, loginToAccount } = useLogin();
   const { setSignInModalStatus } = useModalStore();
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
@@ -23,7 +25,7 @@ function ModalSignIn() {
   }
 
   const onSubmit: SubmitHandler<SignInInputs> = (data) => {
-    console.log(data);
+    loginToAccount(data);
   };
 
   const {
@@ -72,7 +74,12 @@ function ModalSignIn() {
       <hr className="mb-2 mt-3 bg-stone-400" />
 
       <div className="flex justify-between">
-        <Button buttonType="submit" type="primary" size="normal">
+        <Button
+          buttonType="submit"
+          type="primary"
+          size="normal"
+          isDisabled={isLoginToAccount}
+        >
           Login
         </Button>
         <Button
@@ -80,6 +87,7 @@ function ModalSignIn() {
           buttonType="button"
           type="tertiary"
           size="normal"
+          isDisabled={isLoginToAccount}
         >
           Close
         </Button>

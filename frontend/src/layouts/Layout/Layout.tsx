@@ -1,13 +1,30 @@
-import { Outlet } from "react-router";
+import { Outlet, useLocation } from "react-router";
 import MobileNavbar from "../../components/Navbars/MobileNavBar";
 import Footer from "../../components/Footer/Footer";
 import DesktopNavbar from "../../components/Navbars/DesktopNavbar";
 import { useMediaQuery } from "react-responsive";
+import { useEffect } from "react";
+
+import { useUserStore } from "../../store/useUserStore";
+import { checkAuthApi } from "../../services/apiAccount";
 
 function Layout() {
+  const { user, checkAuth } = useUserStore();
+  const location = useLocation();
+
   const isDesktop = useMediaQuery({
     query: "(max-width: 1024px)",
   });
+
+  useEffect(() => {
+    async function checkAuthFn() {
+      if (!user) {
+        const data = await checkAuthApi();
+        checkAuth(data);
+      }
+    }
+    checkAuthFn();
+  }, [location.pathname, user, checkAuth]);
 
   return (
     <div className="font-body  grid grid-cols-1 grid-layout layout-height bg-amber-50 text-stone-800">

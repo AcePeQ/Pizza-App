@@ -190,8 +190,12 @@ export const verifyAuth = (req: Request, res: Response) => {
     }
 
     res.status(200).json({
-      user: { ...authReq.user },
-      user_shipping_address: { ...authReq.userShippingAddress },
+      user: {
+        _id: authReq.user._id,
+        email: authReq.user.email,
+        profilePicture: authReq.user.profilePicture,
+        displayName: authReq.user.displayName,
+      },
     });
   } catch (error) {
     console.log(`Error in verifyAuth controller: ${error}`);
