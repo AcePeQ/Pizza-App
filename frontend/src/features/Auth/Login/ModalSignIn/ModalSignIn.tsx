@@ -20,19 +20,23 @@ function ModalSignIn() {
   const { setSignInModalStatus } = useModalStore();
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<SignInInputs>();
+
   function handleCloseModal() {
     setSignInModalStatus(false);
   }
 
   const onSubmit: SubmitHandler<SignInInputs> = (data) => {
-    loginToAccount(data);
+    loginToAccount(data, {
+      onSuccess: () => setSignInModalStatus(false),
+      onError: () => reset(),
+    });
   };
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<SignInInputs>();
 
   return (
     <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
