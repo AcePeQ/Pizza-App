@@ -7,9 +7,11 @@ import { useEffect } from "react";
 
 import { useUserStore } from "../../store/useUserStore";
 import { checkAuthApi } from "../../services/apiAccount";
+import { useLocation } from "react-router";
 
 function Layout() {
   const { user, checkAuth, logout } = useUserStore();
+  const location = useLocation();
 
   const isDesktop = useMediaQuery({
     query: "(max-width: 1024px)",
@@ -18,25 +20,21 @@ function Layout() {
   useEffect(() => {
     async function checkAuthFn() {
       const data = await checkAuthApi();
-      console.log(data);
       if (user && data) {
         return;
       }
 
       if (!user && data) {
         checkAuth(data);
-        console.log("Essa");
         return;
       }
       if (user && !data) {
         logout();
-        console.log("Essa1");
         return;
       }
-      console.log("essa3");
     }
     checkAuthFn();
-  }, [user, checkAuth, logout]);
+  }, [location.pathname, user, checkAuth, logout]);
 
   return (
     <div className="font-body  grid grid-cols-1 grid-layout layout-height bg-amber-50 text-stone-800">
