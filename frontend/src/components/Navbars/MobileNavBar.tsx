@@ -7,8 +7,10 @@ import { useLocation } from "react-router";
 import CartButton from "../CartButton/CartButton";
 import SignUpButton from "../../features/Auth/Register/SignUpButton";
 import SignInButton from "../../features/Auth/Login/SignInButton";
+import { useUserStore } from "../../store/useUserStore";
 
 function MobileNavbar() {
+  const { user } = useUserStore();
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
 
@@ -51,7 +53,7 @@ function MobileNavbar() {
         <Logo />
 
         <div className="flex justify-center items-center gap-x-3">
-          {/* <CartButton /> */}
+          {user && <CartButton />}
           <button
             onClick={handleToggleMenu}
             type="button"
@@ -74,11 +76,14 @@ function MobileNavbar() {
         }   transition-all justify-between items-center absolute top-0 left-0 w-full h-full text-lg font-bold`}
       >
         <MainNavigation />
-        {/* <ProfileMenu /> */}
-        <div className="flex gap-2.5">
-          <SignUpButton onMenuClose={handleCloseMenu} />
-          <SignInButton onMenuClose={handleCloseMenu} />
-        </div>
+        {user ? (
+          <ProfileMenu />
+        ) : (
+          <div className="flex gap-2.5">
+            <SignUpButton onMenuClose={handleCloseMenu} />
+            <SignInButton onMenuClose={handleCloseMenu} />
+          </div>
+        )}
       </div>
     </div>
   );

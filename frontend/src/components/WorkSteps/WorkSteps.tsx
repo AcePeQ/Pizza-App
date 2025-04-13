@@ -10,7 +10,7 @@ function WorkSteps() {
           <img
             aria-hidden="true"
             className="absolute -top-5 -left-0.5 -z-1 inline-block"
-            src="/public/blob.svg"
+            src="/blob.svg"
             alt="green blob covering work letters"
             loading="lazy"
           />

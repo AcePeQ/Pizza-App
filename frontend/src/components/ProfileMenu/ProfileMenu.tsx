@@ -62,16 +62,16 @@ function ProfileMenu() {
           menuOpen
             ? "translate-0 shadow-md shadow-stone-900/30"
             : "translate-x-full pointer-events-none invisible"
-        } `}
+        } lg:bg-stone-800 lg:text-xl`}
       >
-        <ul className="flex flex-col gap-2.5">
+        <ul className="flex flex-col gap-2.5 lg:gap-3">
           {ProfileLinks.map((link) => (
             <li className="flex items-center justify-center " key={link.name}>
               <NavLink
                 className={({ isActive }) =>
                   isActive
-                    ? "w-full flex items-center  gap-x-1.5 px-3 py-1 transition-colors duration-300 text-white  bg-stone-600 rounded-md"
-                    : "w-full flex items-center  gap-x-1.5 px-3 py-1 transition-colors duration-300 text-amber-100 hover:text-white active:text-white hover:bg-stone-600 rounded-md"
+                    ? "w-full flex items-center  gap-x-1.5 px-3 py-1 transition-colors duration-300 text-white  bg-stone-600 rounded-md lg:gap-x-2"
+                    : "w-full flex items-center  gap-x-1.5 px-3 py-1 transition-colors duration-300 text-amber-100 hover:text-white active:text-white hover:bg-stone-600 rounded-md lg:gap-x-2"
                 }
                 to={link.path}
               >
