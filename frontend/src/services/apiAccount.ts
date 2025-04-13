@@ -63,20 +63,62 @@ export async function loginToAccountApi(accountData: ILoginData) {
   }
 }
 
-export async function checkAuthApi() {
-  const res = await fetch("/api/auth/verifyAuth", {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    method: "GET",
-    credentials: "include",
-  });
+export async function logoutFromAccountApi() {
+  try {
+    const res = await fetch("/api/auth/logout", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+    });
 
-  if (!res.ok) {
-    return new Error("Unauthorized");
+    if (!res.ok) {
+      toast.error("Something went wrong!");
+      throw new Error("Something went wrong");
+    }
+
+    return;
+  } catch (error) {
+    console.error(error);
+    throw new Error(error as string);
   }
-
-  const data = await res.json();
-
-  return data;
 }
+
+export async function checkAuthApi() {
+  try {
+    const res = await fetch("/api/auth/verifyAuth", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+    });
+
+    if (!res.ok) {
+      return null;
+    }
+
+    const data = await res.json();
+
+    return data;
+  } catch {
+    return null;
+  }
+}
+
+// export async function checkAuthApi() {
+//   const res = await fetch("/api/auth/verifyAuth", {
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     method: "GET",
+//     credentials: "include",
+//   });
+
+//   if (!res.ok) {
+//     return null;
+//   }
+
+//   const data = await res.json();
+
+//   return data;
+// }

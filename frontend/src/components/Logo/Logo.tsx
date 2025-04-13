@@ -5,7 +5,7 @@ function Logo() {
     <Link to="/" className="flex items-center gap-x-2">
       <img
         className="flex w-10"
-        src="/public/logo.png"
+        src="/logo.png"
         alt="yummy logo of pizza without one slice"
       />
       <p className="font-accent text-3xl font-bold tracking-widest text-amber-500">

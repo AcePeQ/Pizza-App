@@ -1,15 +1,18 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { checkAuthApi } from "../../services/apiAccount";
+import { useUserStore } from "../../store/useUserStore";
 
 export function useCheckAuth() {
-  const {
-    isPending: isCheckingAuth,
-    isError: isAuthError,
-    data: userData,
-  } = useQuery({
-    queryKey: ["checkAuth"],
-    queryFn: checkAuthApi,
+  const { user, checkAuth, logout } = useUserStore();
+  const { mutate: checkAuthFn } = useMutation({
+    mutationFn: () => checkAuthApi(),
+    onSuccess: (data) => {
+      if (!user) checkAuth(data);
+    },
+    onError: () => {
+      if (user) logout();
+    },
   });
 
-  return { isCheckingAuth, isAuthError, userData };
+  return { checkAuthFn };
 }

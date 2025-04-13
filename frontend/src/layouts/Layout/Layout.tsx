@@ -5,12 +5,11 @@ import DesktopNavbar from "../../components/Navbars/DesktopNavbar";
 import { useMediaQuery } from "react-responsive";
 import { useEffect } from "react";
 
-import { useUserStore } from "../../store/useUserStore";
-import { checkAuthApi } from "../../services/apiAccount";
 import { useLocation } from "react-router";
+import { useCheckAuth } from "../../features/Auth/useCheckAuth";
 
 function Layout() {
-  const { user, checkAuth, logout } = useUserStore();
+  const { checkAuthFn } = useCheckAuth();
   const location = useLocation();
 
   const isDesktop = useMediaQuery({
@@ -18,23 +17,9 @@ function Layout() {
   });
 
   useEffect(() => {
-    async function checkAuthFn() {
-      const data = await checkAuthApi();
-      if (user && data) {
-        return;
-      }
-
-      if (!user && data) {
-        checkAuth(data);
-        return;
-      }
-      if (user && !data) {
-        logout();
-        return;
-      }
-    }
     checkAuthFn();
-  }, [location.pathname, user, checkAuth, logout]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.pathname]);
 
   return (
     <div className="font-body  grid grid-cols-1 grid-layout layout-height bg-amber-50 text-stone-800">

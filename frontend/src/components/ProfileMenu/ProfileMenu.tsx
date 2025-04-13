@@ -1,9 +1,13 @@
 import { NavLink, useLocation } from "react-router";
 import { ProfileLinks } from "../../utils/NavigationLinks";
 import { useEffect, useRef, useState } from "react";
-import { Settings, User } from "lucide-react";
+import { LogOut, Settings, User } from "lucide-react";
+import { useLogout } from "../../features/Auth/useLogout";
+import { useUserStore } from "../../store/useUserStore";
 
 function ProfileMenu() {
+  const { user } = useUserStore();
+  const { isLoggingOut, logoutFromAccount } = useLogout();
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
@@ -50,7 +54,7 @@ function ProfileMenu() {
       >
         <img
           className="pointer-events-none"
-          src="/avatar.png"
+          src={`${user?.profilePicture ? user.profilePicture : "/avatar.png"}`}
           alt="user profile photography"
         />
       </button>
@@ -80,6 +84,19 @@ function ProfileMenu() {
               </NavLink>
             </li>
           ))}
+          <li>
+            <button
+              disabled={isLoggingOut}
+              onClick={() => {
+                logoutFromAccount();
+              }}
+              type="button"
+              className="w-full flex items-center  gap-x-1.5 px-3 py-1 transition-colors duration-300 text-amber-100 hover:text-white active:text-white hover:bg-stone-600 rounded-md lg:gap-x-2 cursor-pointer disabled:text-white disabled:bg-stone-600"
+            >
+              <LogOut />
+              Logout
+            </button>
+          </li>
         </ul>
       </nav>
     </div>

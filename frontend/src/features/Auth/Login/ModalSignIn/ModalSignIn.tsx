@@ -33,7 +33,6 @@ function ModalSignIn() {
 
   const onSubmit: SubmitHandler<SignInInputs> = (data) => {
     loginToAccount(data, {
-      onSuccess: () => setSignInModalStatus(false),
       onError: () => reset(),
     });
   };

@@ -21,6 +21,6 @@ router.post("/update-profile", verifyToken, updateProfile);
 
 router.post("/update-address", verifyToken, updateAddress);
 
-router.get("/verifyAuth", verifyToken, verifyAuth);
+router.post("/verifyAuth", verifyToken, verifyAuth);
 
 export default router;
