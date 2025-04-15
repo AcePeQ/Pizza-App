@@ -35,7 +35,7 @@ function Button({
 
   return (
     <button
-      className={`inline-block cursor-pointer transition-colors duration-[400ms] shadow-md shadow-stone-900/30  ${typeClass} ${sizeClass}`}
+      className={`inline-block cursor-pointer transition-colors duration-[400ms] shadow-md shadow-stone-900/30 ${typeClass} ${sizeClass}`}
       onClick={onClick}
       type={buttonType}
       disabled={isDisabled}

@@ -56,3 +56,21 @@ Hover: hover:bg-stone-600 hover:text-white
 .hero-height {
   min-height: calc(100dvh - 52px);
 }
+
+.pizza-card + .pizza-ingridents {
+  opacity: 0;
+  pointer-events: none;
+  visibility: none;
+
+  transition: opacity 0.4s;
+}
+
+.pizza-card:hover + .pizza-ingridents {
+  opacity: 1;
+  visibility: visible;
+}
+
+.pizza-card:focus-within + .pizza-ingridents {
+  opacity: 1;
+  visibility: visible;
+}
