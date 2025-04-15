@@ -1,12 +1,22 @@
+import { SlidersHorizontal } from "lucide-react";
 import PizzaCard from "./PizzaCard/PizzaCard";
 import PizzaFilters from "./PizzaFilters/PizzaFilters";
 
 function Menu() {
   return (
-    <section className="my-10">
-      <h2 className="text-center font-header text-4xl/tight font-bold text-pretty">
-        Pizza Menu
-      </h2>
+    <section className="my-10 relative">
+      <div className="mb-25 flex justify-between mx-6 pb-2 gap-10 items-center border-b-2">
+        <h2 className="font-header text-4xl/tight font-bold text-pretty ">
+          Pizza Menu
+        </h2>
+
+        <button
+          type="button"
+          className="cursor-pointer duration-300 transition-colors hover:text-stone-950"
+        >
+          <SlidersHorizontal size={30} />
+        </button>
+      </div>
 
       <PizzaFilters />
 
