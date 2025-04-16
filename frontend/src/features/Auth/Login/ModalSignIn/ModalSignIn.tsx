@@ -67,7 +67,7 @@ function ModalSignIn() {
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="cursor-pointer absolute bottom-0.25 right-2 transition-colors duration-300 text-stone-800 hover:text-stone-500"
+            className="cursor-pointer absolute bottom-0.25 right-2 transition-colors duration-300 text-stone-800 hover:text-stone-50"
           >
             {showPassword ? <Eye size={28} /> : <EyeOff size={28} />}
           </button>
