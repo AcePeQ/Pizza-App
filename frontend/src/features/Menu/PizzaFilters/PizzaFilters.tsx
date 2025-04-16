@@ -1,6 +1,19 @@
 import { X } from "lucide-react";
+import PizzaFilter from "./PizzaFilter";
+import { sortByOptions } from "../../../utils/FilterOptions";
+import React from "react";
 
-function PizzaFilters() {
+export interface IFiltersState {
+  sortBy: { label: string; value: string };
+  ingridients: { label: string; value: string }[];
+}
+
+interface IFilters {
+  filters: IFiltersState;
+  setFilters: React.Dispatch<React.SetStateAction<IFiltersState>>;
+}
+
+function PizzaFilters({ filters, setFilters }: IFilters) {
   return (
     <>
       <div className="w-full h-dvh fixed top-0 right-0 bg-stone-800/75 z-[1111111110]"></div>
@@ -14,12 +27,35 @@ function PizzaFilters() {
           </button>
         </div>
 
-        <div className="text-amber-50 flex flex-col gap-3.5 border-b-2 pb-2 py-4 px-3">
-          <p className="font-header text-2xl/tight font-bold text-pretty">
-            Sort by
-          </p>
-          Input
-        </div>
+        <PizzaFilter
+          title="Sort by"
+          filterOptions={sortByOptions}
+          defaultOption={filters.sortBy}
+          onChange={(option) => {
+            if (!Array.isArray(option)) {
+              setFilters((prev) => ({
+                ...prev,
+                sortBy: option,
+              }));
+            }
+          }}
+        />
+
+        <PizzaFilter
+          title="Ingridients"
+          filterOptions={sortByOptions}
+          filterType="multi"
+          placeholder="Select your ingredients..."
+          defaultOption={filters.ingridients}
+          onChange={(option) => {
+            if (Array.isArray(option)) {
+              setFilters((prev) => ({
+                ...prev,
+                ingridients: option,
+              }));
+            }
+          }}
+        />
       </div>
     </>
   );
