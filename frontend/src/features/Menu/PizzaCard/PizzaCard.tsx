@@ -1,7 +1,19 @@
 import Button from "../../../components/Button/Button";
+import { useModalStore } from "../../../store/useModalStore";
+import { useUserStore } from "../../../store/useUserStore";
 import PizzaIngridient from "./PizzaIngridient";
 
 function PizzaCard() {
+  const { user } = useUserStore();
+  const { setSignInModalStatus } = useModalStore();
+
+  function handleAddPizzaToCart() {
+    if (!user) {
+      setSignInModalStatus(true);
+      return;
+    }
+  }
+
   return (
     <li className="relative [perspective:1000px]">
       <div
@@ -19,7 +31,12 @@ function PizzaCard() {
             <p className="text-lg mt-0.5">7,50€</p>
           </figcaption>
         </figure>
-        <Button buttonType="button" size="big" type="primary">
+        <Button
+          onClick={handleAddPizzaToCart}
+          buttonType="button"
+          size="big"
+          type="primary"
+        >
           Add to cart
         </Button>
       </div>

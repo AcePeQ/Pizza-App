@@ -7,8 +7,11 @@ export interface IUser {
   profilePicture: string;
 }
 
+export interface ICartItem {}
+
 interface IUserState {
   user: IUser | null;
+  userCart: ICartItem | null;
 
   login: (userData: IUser) => void;
   logout: () => void;
@@ -17,6 +20,7 @@ interface IUserState {
 
 export const useUserStore = create<IUserState>((set) => ({
   user: null,
+  userCart: null,
 
   login: (userData: IUser) => {
     set(() => ({ user: userData }));
