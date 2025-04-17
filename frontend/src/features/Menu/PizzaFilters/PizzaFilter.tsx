@@ -24,7 +24,7 @@ function PizzaFilter({
 
   return (
     <div className="text-amber-50 flex flex-col gap-3.5 border-b-2 pb-4 py-4 px-3">
-      <p className="font-header text-2xl/tight font-bold text-pretty">
+      <p className="font-header text-2xl/tight font-bold text-pretty tracking-wide">
         {title}
       </p>
       {filterType === "single" && (

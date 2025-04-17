@@ -11,18 +11,38 @@ export interface IFiltersState {
 interface IFilters {
   filters: IFiltersState;
   setFilters: React.Dispatch<React.SetStateAction<IFiltersState>>;
+  onClose: () => void;
+  isMenuActive: boolean;
 }
 
-function PizzaFilters({ filters, setFilters }: IFilters) {
+function PizzaFilters({
+  filters,
+  setFilters,
+  onClose,
+  isMenuActive,
+}: IFilters) {
   return (
     <>
-      <div className="w-full h-dvh fixed top-0 right-0 bg-stone-800/75 z-[1111111110]"></div>
-      <div className="fixed top-0 right-0 max-w-80 w-full h-dvh bg-stone-800 z-[1111111111] overflow-y-auto">
+      <div
+        onClick={onClose}
+        className={`w-full h-dvh fixed top-0 right-0 bg-stone-800/75 z-[1111111110] duration-500 ${
+          isMenuActive
+            ? "pointer-events-auto opacity-100 visible"
+            : "pointer-events-none opacity-0 invisible"
+        }`}
+      ></div>
+      <div
+        className={`filter_wrapper fixed top-0 right-0 translate-0  max-w-80 w-full h-dvh bg-stone-800 z-[1111111111] duration-500 overflow-y-auto ${
+          isMenuActive
+            ? "pointer-events-auto translate-0 visible"
+            : "pointer-events-none translate-x-full invisible"
+        }`}
+      >
         <div className="text-amber-50 flex justify-between items-center border-b-2 pb-2 py-4 px-3">
           <h2 className="font-header text-4xl/tight font-bold text-pretty">
             Filters
           </h2>
-          <button className="cursor-pointer">
+          <button className="cursor-pointer" onClick={onClose}>
             <X size={36} />
           </button>
         </div>
