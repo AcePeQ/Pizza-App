@@ -4,10 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import MainNavigation from "../Navigations/MainNavigation/MainNavigation";
 import ProfileMenu from "../ProfileMenu/ProfileMenu";
 import { useLocation } from "react-router";
-import CartButton from "../CartButton/CartButton";
 import SignUpButton from "../../features/Auth/Register/SignUpButton";
 import SignInButton from "../../features/Auth/Login/SignInButton";
 import { useUserStore } from "../../store/useUserStore";
+import CartButton from "../../features/Cart/CartButton/CartButton";
 
 function MobileNavbar() {
   const { user } = useUserStore();
@@ -52,7 +52,7 @@ function MobileNavbar() {
       >
         <Logo />
 
-        <div className="flex justify-center items-center gap-x-3">
+        <div className="flex justify-center items-center gap-x-3.5">
           {user && <CartButton />}
           <button
             onClick={handleToggleMenu}

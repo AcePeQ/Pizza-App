@@ -125,3 +125,14 @@ Hover: hover:bg-stone-600 hover:text-white
   padding: 6px !important;
   padding-left: 9px !important;
 }
+
+.cart_hover {
+  top: calc(100% + 12px);
+  right: -12px;
+
+  display: none;
+}
+
+.cart_button:hover .cart_hover {
+  display: block;
+}

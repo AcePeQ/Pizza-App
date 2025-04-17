@@ -7,11 +7,17 @@ export interface IUser {
   profilePicture: string;
 }
 
-export interface ICartItem {}
+export interface ICartItem {
+  id: string;
+  name: string;
+  price: string;
+  size: string;
+  ingridients: string[];
+}
 
 interface IUserState {
   user: IUser | null;
-  userCart: ICartItem | null;
+  userCart: ICartItem[] | null;
 
   login: (userData: IUser) => void;
   logout: () => void;

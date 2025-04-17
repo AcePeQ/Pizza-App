@@ -3,9 +3,9 @@ import SignInButton from "../../features/Auth/Login/SignInButton";
 import SignUpButton from "../../features/Auth/Register/SignUpButton";
 import Logo from "../Logo/Logo";
 import MainNavigation from "../Navigations/MainNavigation/MainNavigation";
-import CartButton from "../CartButton/CartButton";
 import ProfileMenu from "../ProfileMenu/ProfileMenu";
 import { useUserStore } from "../../store/useUserStore";
+import CartButton from "../../features/Cart/CartButton/CartButton";
 
 function DesktopNavbar() {
   const { user } = useUserStore();
@@ -22,7 +22,7 @@ function DesktopNavbar() {
         <MainNavigation />
 
         {user ? (
-          <div className="flex gap-2.5 items-center justify-end">
+          <div className="flex gap-3.5 items-center justify-end">
             <CartButton />
             <ProfileMenu />
           </div>
