@@ -17,7 +17,7 @@ export interface ICartItem {
 
 interface IUserState {
   user: IUser | null;
-  userCart: ICartItem[] | null;
+  userCart: ICartItem[] | [];
 
   login: (userData: IUser) => void;
   logout: () => void;
@@ -26,11 +26,14 @@ interface IUserState {
 
 export const useUserStore = create<IUserState>((set) => ({
   user: null,
-  userCart: null,
+  userCart: [],
 
   login: (userData: IUser) => {
     set(() => ({ user: userData }));
+    const cart = JSON.parse(localStorage.getItem("userCart") as string) || [];
+
     sessionStorage.setItem("user", JSON.stringify(userData));
+    localStorage.setItem("userCart", JSON.stringify(cart));
   },
 
   logout: () => {
@@ -39,7 +42,9 @@ export const useUserStore = create<IUserState>((set) => ({
   },
 
   checkAuth: (userData: IUser) => {
-    set(() => ({ user: userData }));
+    const cart = JSON.parse(localStorage.getItem("userCart") as string) || [];
+
+    set(() => ({ user: userData, userCart: cart }));
     sessionStorage.setItem("user", JSON.stringify(userData));
   },
 }));
