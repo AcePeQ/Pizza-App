@@ -1,7 +1,7 @@
 import Button from "../../../components/Button/Button";
 import { useModalStore } from "../../../store/useModalStore";
 import { useUserStore } from "../../../store/useUserStore";
-import PizzaIngridient from "./PizzaIngridient";
+import PizzaIngredient from "./PizzaIngredient";
 
 function PizzaCard() {
   const { user } = useUserStore();
@@ -43,11 +43,11 @@ function PizzaCard() {
 
       {/* Ingridenty */}
       <div className="pizza-ingridents bg-stone-700 rounded-md w-1 h-9/12 absolute -top-9/12 left-1/2 translate-y-8/12 -translate-x-1/2">
-        <PizzaIngridient index={0} />
-        <PizzaIngridient index={1} />
-        <PizzaIngridient index={2} />
-        <PizzaIngridient index={3} />
-        <PizzaIngridient index={4} />
+        <PizzaIngredient index={0} />
+        <PizzaIngredient index={1} />
+        <PizzaIngredient index={2} />
+        <PizzaIngredient index={3} />
+        <PizzaIngredient index={4} />
       </div>
     </li>
   );

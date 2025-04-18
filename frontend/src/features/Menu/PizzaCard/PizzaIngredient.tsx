@@ -1,4 +1,4 @@
-function PizzaIngridient({ index }: { index: number }) {
+function PizzaIngredient({ index }: { index: number }) {
   return (
     <div
       className={`absolute ml-2 bg-stone-700 shadow-md shadow-stone-700/85 rounded-xl px-3 py-1 top-${
@@ -10,4 +10,4 @@ function PizzaIngridient({ index }: { index: number }) {
   );
 }
 
-export default PizzaIngridient;
+export default PizzaIngredient;

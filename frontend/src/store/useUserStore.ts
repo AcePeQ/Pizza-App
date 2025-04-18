@@ -10,9 +10,10 @@ export interface IUser {
 export interface ICartItem {
   id: string;
   name: string;
+  image: string;
   price: string;
   size: string;
-  ingridients: string[];
+  ingredients: string[];
 }
 
 interface IUserState {

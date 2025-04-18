@@ -3,8 +3,10 @@ import PizzaCard from "./PizzaCard/PizzaCard";
 import PizzaFilters, { IFiltersState } from "./PizzaFilters/PizzaFilters";
 import { useState } from "react";
 import { sortByOptions } from "../../utils/FilterOptions";
+import { useMenu } from "./useMenu";
 
 function Menu() {
+  const { isPending, data } = useMenu();
   const [filters, setFilters] = useState<IFiltersState>({
     sortBy: sortByOptions[0],
     ingridients: [],
@@ -15,6 +17,12 @@ function Menu() {
   function handleCloseFilterMenu() {
     setFilterMenu(false);
   }
+
+  if (isPending) {
+    return <p>Loading</p>;
+  }
+
+  console.log(data);
 
   return (
     <section className="my-10 relative">
