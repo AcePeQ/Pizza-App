@@ -1,4 +1,5 @@
 import { ShoppingCart } from "lucide-react";
+import CartItem from "../CartItem/CartItem";
 
 function CartButton() {
   return (
@@ -12,43 +13,8 @@ function CartButton() {
 
       <div className="cart_hover absolute  bg-stone-800 text-amber-50 p-2 rounded-lg">
         <ul>
-          <li className="border-b-2 border-amber-50">
-            <div className="flex items-center gap-4 py-3 px-2">
-              <figure className="w-16 h-16">
-                <img
-                  className="max-w-full"
-                  src="/pizzas/margarita.png"
-                  alt="pizza"
-                />
-              </figure>
-              <div className="text-amber-50 text-center">
-                <p className="text-2xl tracking-wider">Margharita</p>
-                <p className="text-lg mt-0.5 flex items-center justify-between gap-2">
-                  <span className="inline-block">1x</span>
-                  <span className="inline-block">7,50€</span>
-                </p>
-              </div>
-            </div>
-          </li>
-
-          <li className="border-b-2 border-amber-50">
-            <div className="flex items-center gap-4 py-3 px-2">
-              <figure className="w-16 h-16">
-                <img
-                  className="max-w-full"
-                  src="/pizzas/margarita.png"
-                  alt="pizza"
-                />
-              </figure>
-              <div className="text-amber-50 text-center">
-                <p className="text-2xl tracking-wider">Margharita</p>
-                <p className="text-lg mt-0.5 flex items-center justify-between gap-2">
-                  <span className="inline-block">1x</span>
-                  <span className="inline-block">7,50€</span>
-                </p>
-              </div>
-            </div>
-          </li>
+          <CartItem />
+          <CartItem />
         </ul>
         <div className=" flex py-2 px-2 text-2xl tracking-wider text-amber-50 items-center justify-between">
           <p>Total:</p>
