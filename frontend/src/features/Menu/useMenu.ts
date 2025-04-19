@@ -1,7 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { getMenuApi } from "../../services/apiMenu";
+import { IFiltersState } from "./PizzaFilters/PizzaFilters";
 
-export function useMenu() {
+export function useMenu(filters: IFiltersState) {
   const {
     isPending: isGettingMenu,
     isError: isMenuError,
@@ -9,7 +10,7 @@ export function useMenu() {
     data: menuData,
   } = useQuery({
     queryKey: ["menu"],
-    queryFn: getMenuApi,
+    queryFn: () => getMenuApi(filters),
   });
 
   return { isGettingMenu, isMenuError, menuError, menuData };

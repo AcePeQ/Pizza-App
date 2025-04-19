@@ -14,11 +14,11 @@ export interface IPizzaMenuItem {
 }
 
 function Menu() {
-  const { isGettingMenu, menuData } = useMenu();
   const [filters, setFilters] = useState<IFiltersState>({
     sortBy: sortByOptions[0],
-    ingridients: [],
+    ingredients: [],
   });
+  const { isGettingMenu, menuError, isMenuError, menuData } = useMenu(filters);
 
   const [filterMenu, setFilterMenu] = useState<boolean>(false);
 

@@ -2,10 +2,11 @@ import { X } from "lucide-react";
 import PizzaFilter from "./PizzaFilter";
 import { sortByOptions } from "../../../utils/FilterOptions";
 import React from "react";
+import { useIngredients } from "../useIngredients";
 
 export interface IFiltersState {
   sortBy: { label: string; value: string };
-  ingridients: { label: string; value: string }[];
+  ingredients: { label: string; value: string }[];
 }
 
 interface IFilters {
@@ -21,6 +22,17 @@ function PizzaFilters({
   onClose,
   isMenuActive,
 }: IFilters) {
+  const {
+    isGettingIngredients,
+    isIngredientsError,
+    ingredientsError,
+    ingredientsData,
+  } = useIngredients();
+
+  if (isGettingIngredients) {
+    return <p>Return</p>;
+  }
+
   return (
     <>
       <div
@@ -62,16 +74,16 @@ function PizzaFilters({
         />
 
         <PizzaFilter
-          title="Ingridients"
-          filterOptions={sortByOptions}
+          title="Ingredients"
+          filterOptions={ingredientsData}
           filterType="multi"
           placeholder="Select your ingredients..."
-          defaultOption={filters.ingridients}
+          defaultOption={filters.ingredients}
           onChange={(option) => {
             if (Array.isArray(option)) {
               setFilters((prev) => ({
                 ...prev,
-                ingridients: option,
+                ingredients: option,
               }));
             }
           }}
