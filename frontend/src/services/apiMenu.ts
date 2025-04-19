@@ -4,7 +4,11 @@ import { IFiltersState } from "../features/Menu/PizzaFilters/PizzaFilters";
 export async function getMenuApi(filters: IFiltersState) {
   try {
     const res = await fetch(
-      `/api/menu/pizzaMenu?sortBy=${filters.sortBy.value}&ingredients=${filters.ingredients}`,
+      `/api/menu/pizzaMenu?sortBy=${filters.sortBy.value}&ingredients=${
+        filters.ingredients.length > 0
+          ? filters.ingredients.map((ingredient) => ingredient.value).join(",")
+          : null
+      }`,
       {
         headers: {
           "Content-Type": "application/json",

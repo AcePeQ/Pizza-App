@@ -9,7 +9,7 @@ export function useMenu(filters: IFiltersState) {
     error: menuError,
     data: menuData,
   } = useQuery({
-    queryKey: ["menu"],
+    queryKey: ["menu", filters.sortBy, filters.ingredients],
     queryFn: () => getMenuApi(filters),
   });
 

@@ -3,7 +3,41 @@ import Pizza from "../models/pizza.model";
 
 export const pizzaMenu = async (req: Request, res: Response) => {
   try {
-    const pizzaMenu = await Pizza.find();
+    const { sortBy, ingredients } = req.query;
+
+    const filter: any = {};
+
+    if (ingredients !== "null" && typeof ingredients === "string") {
+      const ingredientsArr = ingredients.split(",");
+      filter.ingredients = { $all: ingredientsArr };
+    }
+
+    const sort: any = {};
+
+    switch (sortBy) {
+      case "price_ascending":
+        sort.price = 1;
+        break;
+      case "price_descending":
+        sort.price = -1;
+        break;
+      case "name_az":
+        sort.name = 1;
+        break;
+      case "name_za":
+        sort.name = -1;
+        break;
+    }
+
+    let pizzaMenu;
+
+    if (ingredients !== "null") {
+      pizzaMenu = await Pizza.find(ingredients ? filter : "").sort(sort);
+      res.status(200).json(pizzaMenu);
+      return;
+    }
+
+    pizzaMenu = await Pizza.find().sort(sort);
     res.status(200).json(pizzaMenu);
   } catch (error) {
     console.log(`Error in pizza menu controller: ${error}`);
