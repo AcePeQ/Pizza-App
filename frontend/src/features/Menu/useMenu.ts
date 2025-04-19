@@ -2,10 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import { getMenuApi } from "../../services/apiMenu";
 
 export function useMenu() {
-  const { isPending, isError, error, data } = useQuery({
+  const {
+    isPending: isGettingMenu,
+    isError: isMenuError,
+    error: menuError,
+    data: menuData,
+  } = useQuery({
     queryKey: ["menu"],
     queryFn: getMenuApi,
   });
 
-  return { isPending, isError, error, data };
+  return { isGettingMenu, isMenuError, menuError, menuData };
 }
