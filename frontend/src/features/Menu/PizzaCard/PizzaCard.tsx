@@ -60,7 +60,7 @@ function PizzaCard({ pizza }: { pizza: IPizzaMenuItem }) {
             onClick={handleRemovePizzaFromCart}
             buttonType="button"
             size="big"
-            type="primary"
+            type="tertiary"
           >
             Remove
           </Button>

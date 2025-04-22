@@ -23,6 +23,8 @@ function Button({
     typeClass = `bg-transparent text-white border-3 border-stone-700 hover:bg-stone-900 hover:border-stone-900 disabled:bg-stone-950 disabled:border-stone-950 disabled:cursor-not-allowed`;
   } else if (type === "tertiary") {
     typeClass = `bg-transparent text-white border-3 border-stone-700 hover:bg-stone-700 hover:text-amber-50 disabled:bg-stone-950 disabled:border-stone-950 disabled:cursor-not-allowed`;
+  } else if (type === "delete") {
+    typeClass = `bg-red-600 text-white hover:bg-red-700 active:bg-red-800 disabled:bg-red-950 disabled:cursor-not-allowed`;
   }
 
   if (size === "sm") {
