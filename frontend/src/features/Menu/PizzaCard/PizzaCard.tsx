@@ -5,14 +5,34 @@ import { IPizzaMenuItem } from "../Menu";
 import PizzaIngredient from "./PizzaIngredient";
 
 function PizzaCard({ pizza }: { pizza: IPizzaMenuItem }) {
-  const { user } = useUserStore();
+  const { user, userCart, addPizzaToCart, removePizzaFromCart } =
+    useUserStore();
   const { setSignInModalStatus } = useModalStore();
+
+  const isInUserCart = userCart.find(
+    (pizzaItem) => pizzaItem._id === pizza._id
+  );
+
+  console.log(userCart);
 
   function handleAddPizzaToCart() {
     if (!user) {
       setSignInModalStatus(true);
       return;
     }
+
+    const newPizza = { ...pizza, size: "S" };
+
+    addPizzaToCart(newPizza);
+  }
+
+  function handleRemovePizzaFromCart() {
+    if (!user) {
+      setSignInModalStatus(true);
+      return;
+    }
+
+    removePizzaFromCart(pizza._id);
   }
 
   return (
@@ -34,14 +54,26 @@ function PizzaCard({ pizza }: { pizza: IPizzaMenuItem }) {
             <p className="text-lg mt-0.5">{pizza.price}€</p>
           </figcaption>
         </figure>
-        <Button
-          onClick={handleAddPizzaToCart}
-          buttonType="button"
-          size="big"
-          type="primary"
-        >
-          Add to cart
-        </Button>
+
+        {isInUserCart ? (
+          <Button
+            onClick={handleRemovePizzaFromCart}
+            buttonType="button"
+            size="big"
+            type="primary"
+          >
+            Remove
+          </Button>
+        ) : (
+          <Button
+            onClick={handleAddPizzaToCart}
+            buttonType="button"
+            size="big"
+            type="primary"
+          >
+            Add to cart
+          </Button>
+        )}
       </div>
 
       <div className="pizza-ingridents bg-stone-700 rounded-md w-1 h-9/12 absolute -top-9/12 left-1/2 translate-y-8/12 -translate-x-1/2">

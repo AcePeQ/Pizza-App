@@ -1,18 +1,17 @@
 import { create } from "zustand";
 
 export interface IUser {
-  id: string;
+  _id: string;
   email: string;
   displayName: string;
   profilePicture: string;
 }
 
 export interface ICartItem {
-  id: string;
+  _id: string;
   name: string;
   image: string;
-  price: string;
-  size: string;
+  price: number;
   ingredients: string[];
 }
 
@@ -23,6 +22,9 @@ interface IUserState {
   login: (userData: IUser) => void;
   logout: () => void;
   checkAuth: (userData: IUser) => void;
+
+  addPizzaToCart: (pizza: ICartItem) => void;
+  removePizzaFromCart: (pizzaId: string) => void;
 }
 
 export const useUserStore = create<IUserState>((set) => ({
@@ -47,5 +49,23 @@ export const useUserStore = create<IUserState>((set) => ({
 
     set(() => ({ user: userData, userCart: cart }));
     sessionStorage.setItem("user", JSON.stringify(userData));
+  },
+
+  addPizzaToCart: (pizza: ICartItem) => {
+    set((state) => {
+      const updatedCart = [...state.userCart, pizza];
+      localStorage.setItem("userCart", JSON.stringify(updatedCart));
+      return { userCart: updatedCart };
+    });
+  },
+
+  removePizzaFromCart: (pizzaId: string) => {
+    set((state) => {
+      const updatedCart = state.userCart.filter(
+        (pizza) => pizza._id !== pizzaId
+      );
+      localStorage.setItem("userCart", JSON.stringify(updatedCart));
+      return { userCart: updatedCart };
+    });
   },
 }));
