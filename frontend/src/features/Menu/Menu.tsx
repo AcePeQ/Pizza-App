@@ -4,6 +4,8 @@ import PizzaFilters, { IFiltersState } from "./PizzaFilters/PizzaFilters";
 import { useState } from "react";
 import { sortByOptions } from "../../utils/FilterOptions";
 import { useMenu } from "./useMenu";
+import Loader from "../../components/Loaders/Loader/Loader";
+import Error from "../../components/Error/Error";
 
 export interface IPizzaMenuItem {
   _id: string;
@@ -27,11 +29,15 @@ function Menu() {
   }
 
   if (isGettingMenu) {
-    return <p>Loading</p>;
+    return <Loader />;
+  }
+
+  if (isMenuError) {
+    return <Error error={menuError?.message} />;
   }
 
   return (
-    <section className="my-10 relative overflow-hidden">
+    <section className="mt-10 pb-10 relative overflow-hidden">
       <div className="border-b-2 pb-2 mb-25">
         <div className=" flex justify-between mx-6 gap-10 items-center mb-4">
           <h2 className="font-header text-4xl/tight font-bold text-pretty ">
