@@ -33,6 +33,26 @@ Hover: hover:bg-stone-600 hover:text-white
   --font-accent: "Caveat", sans-serif;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #292524;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: oklch(0.987 0.022 95.277);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 .layout-height {
   min-height: calc(100dvh);
 }

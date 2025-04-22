@@ -18,7 +18,7 @@ function Button({
   let sizeClass, typeClass;
 
   if (type === "primary") {
-    typeClass = `bg-green-700 text-white hover:bg-green-800 active:bg-green-800 disabled:bg-green-950 disabled:cursor-not-allowed`;
+    typeClass = `bg-green-700 border-3 border-transparent text-white hover:bg-green-800 active:bg-green-800 disabled:bg-green-950 disabled:cursor-not-allowed`;
   } else if (type === "secondary") {
     typeClass = `bg-transparent text-white border-3 border-stone-700 hover:bg-stone-900 hover:border-stone-900 disabled:bg-stone-950 disabled:border-stone-950 disabled:cursor-not-allowed`;
   } else if (type === "tertiary") {
@@ -32,7 +32,7 @@ function Button({
   } else if (size === "normal") {
     sizeClass = `px-4 py-1 rounded-md text-xl tracking-wide`;
   } else if (size === "big") {
-    sizeClass = `px-6 py-2.5 rounded-md text-xl tracking-wide`;
+    sizeClass = `px-6 py-2 rounded-md text-xl tracking-wide`;
   }
 
   return (

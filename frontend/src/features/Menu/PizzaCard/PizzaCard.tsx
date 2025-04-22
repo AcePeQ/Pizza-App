@@ -13,8 +13,6 @@ function PizzaCard({ pizza }: { pizza: IPizzaMenuItem }) {
     (pizzaItem) => pizzaItem._id === pizza._id
   );
 
-  console.log(userCart);
-
   function handleAddPizzaToCart() {
     if (!user) {
       setSignInModalStatus(true);
@@ -22,6 +20,7 @@ function PizzaCard({ pizza }: { pizza: IPizzaMenuItem }) {
     }
 
     const newPizza = { ...pizza, size: "S" };
+    console.log(newPizza);
 
     addPizzaToCart(newPizza);
   }

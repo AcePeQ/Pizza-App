@@ -40,7 +40,7 @@ export const useUserStore = create<IUserState>((set) => ({
   },
 
   logout: () => {
-    set(() => ({ user: null }));
+    set(() => ({ user: null, userCart: [] }));
     sessionStorage.removeItem("user");
   },
 
@@ -53,6 +53,7 @@ export const useUserStore = create<IUserState>((set) => ({
 
   addPizzaToCart: (pizza: ICartItem) => {
     set((state) => {
+      console.log(pizza);
       const updatedCart = [...state.userCart, pizza];
       localStorage.setItem("userCart", JSON.stringify(updatedCart));
       return { userCart: updatedCart };

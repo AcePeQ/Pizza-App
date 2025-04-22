@@ -31,9 +31,9 @@ function Menu() {
   }
 
   return (
-    <section className="my-10 relative">
+    <section className="my-10 relative overflow-hidden">
       <div className="border-b-2 pb-2 mb-25">
-        <div className=" flex justify-between mx-6  gap-10 items-center ">
+        <div className=" flex justify-between mx-6 gap-10 items-center mb-4">
           <h2 className="font-header text-4xl/tight font-bold text-pretty ">
             Pizza Menu
           </h2>
@@ -47,9 +47,10 @@ function Menu() {
           </button>
         </div>
 
-        <p className="mx-6 text-sm font-bold">
-          *Every pizza is large size. We do not offer different pizza sizes in
-          our store.
+        <p className="mx-6 text-sm font-bold -indent-[5px] sm:-indent-0">
+          *Every pizza is large size; we do not offer different pizza sizes in
+          our store. If you want to add more than one pizza, you can do so in
+          the cart.
         </p>
       </div>
 
@@ -60,7 +61,7 @@ function Menu() {
         setFilters={setFilters}
       />
 
-      <ul className="flex flex-col gap-30 items-center sm:grid sm:grid-cols-[256px_256px] sm:gap-x-12 sm:justify-center lg:grid-cols-[256px_256px_256px] xl:grid-cols-[256px_256px_256px_256px] 2xl:grid-cols-[256px_256px_256px_256px_256px]">
+      <ul className="grid grid-cols-[256px] gap-30 items-center justify-center sm:grid sm:grid-cols-[256px_256px] sm:gap-x-12 sm:justify-center lg:grid-cols-[256px_256px_256px] xl:grid-cols-[256px_256px_256px_256px] 2xl:grid-cols-[256px_256px_256px_256px_256px]">
         {menuData.map((pizza: IPizzaMenuItem) => (
           <PizzaCard key={`${pizza._id}`} pizza={pizza} />
         ))}
