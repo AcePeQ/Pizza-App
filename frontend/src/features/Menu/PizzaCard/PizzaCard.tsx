@@ -19,8 +19,7 @@ function PizzaCard({ pizza }: { pizza: IPizzaMenuItem }) {
       return;
     }
 
-    const newPizza = { ...pizza, size: "S" };
-    console.log(newPizza);
+    const newPizza = { ...pizza, quantity: 1 };
 
     addPizzaToCart(newPizza);
   }

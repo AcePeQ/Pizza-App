@@ -15,7 +15,8 @@ function CartItem({ pizza }: { pizza: ICartItem }) {
           <p className="text-2xl tracking-wider text-left text-nowrap">
             {pizza.name}
           </p>
-          <p className="text-xl mt-0.5 flex items-center justify-start gap-2">
+          <p className="text-xl mt-0.5 flex items-center justify-between gap-2">
+            <span>{pizza.quantity}x</span>
             {pizza.price}€
           </p>
         </div>

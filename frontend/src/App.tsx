@@ -3,6 +3,7 @@ import { lazy, Suspense } from "react";
 import LoaderFull from "./components/Loaders/LoaderFull/LoaderFull";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
+import CartPage from "./pages/CartPage/CartPage";
 
 const Layout = lazy(() => import("./layouts/Layout/Layout"));
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
@@ -28,6 +29,7 @@ function App() {
             <Route element={<Layout />}>
               <Route index element={<HomePage />} />
               <Route path="/menu" element={<MenuPage />} />
+              <Route path="/cart" element={<CartPage />} />
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/settings" element={<SettingsPage />} />
               <Route path="*" element={<PageNotFound />} />

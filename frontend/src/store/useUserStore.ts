@@ -13,6 +13,7 @@ export interface ICartItem {
   image: string;
   price: number;
   ingredients: string[];
+  quantity: number;
 }
 
 interface IUserState {
@@ -25,6 +26,9 @@ interface IUserState {
 
   addPizzaToCart: (pizza: ICartItem) => void;
   removePizzaFromCart: (pizzaId: string) => void;
+
+  decreaseQuantity: (pizzaId: string) => void;
+  increaseQuantity: (pizzaId: string) => void;
 }
 
 export const useUserStore = create<IUserState>((set) => ({
@@ -53,7 +57,6 @@ export const useUserStore = create<IUserState>((set) => ({
 
   addPizzaToCart: (pizza: ICartItem) => {
     set((state) => {
-      console.log(pizza);
       const updatedCart = [...state.userCart, pizza];
       localStorage.setItem("userCart", JSON.stringify(updatedCart));
       return { userCart: updatedCart };
@@ -67,6 +70,24 @@ export const useUserStore = create<IUserState>((set) => ({
       );
       localStorage.setItem("userCart", JSON.stringify(updatedCart));
       return { userCart: updatedCart };
+    });
+  },
+
+  decreaseQuantity: (pizzaId: string) => {
+    set((state) => {
+      const findPizza = state.userCart.find((pizza) => pizza._id === pizzaId);
+      if (findPizza) findPizza.quantity -= 1;
+      localStorage.setItem("userCart", JSON.stringify(state.userCart));
+      return { userCart: state.userCart };
+    });
+  },
+
+  increaseQuantity: (pizzaId: string) => {
+    set((state) => {
+      const findPizza = state.userCart.find((pizza) => pizza._id === pizzaId);
+      if (findPizza) findPizza.quantity += 1;
+      localStorage.setItem("userCart", JSON.stringify(state.userCart));
+      return { userCart: state.userCart };
     });
   },
 }));

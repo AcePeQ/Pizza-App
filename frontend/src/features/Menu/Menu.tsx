@@ -54,9 +54,9 @@ function Menu() {
         </div>
 
         <p className="mx-6 text-sm font-bold -indent-[5px] sm:-indent-0">
-          *Every pizza is large size; we do not offer different pizza sizes in
-          our store. If you want to add more than one pizza, you can do so in
-          the cart.
+          *Every pizza is large size (32cm). We do not offer different pizza
+          sizes in our store. If you want to add more than one pizza, you can do
+          so in the cart.
         </p>
       </div>
 
