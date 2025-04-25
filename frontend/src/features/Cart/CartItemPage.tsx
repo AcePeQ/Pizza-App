@@ -6,10 +6,10 @@ function CartItemPage({ pizza }: { pizza: ICartItem }) {
     useUserStore();
 
   return (
-    <li className="flex flex-col gap-4 w-full bg-stone-800 text-amber-50 p-4 rounded-xl relative shadow-md shadow-stone-800/75">
+    <li className="flex flex-col max-w-[420px] sm:flex-row sm:max-w-[600px] lg:max-w-[800px] lg:grid lg:grid-cols-[max-content_1fr] mx-auto gap-4 w-full bg-stone-800 text-amber-50 p-4 rounded-xl relative shadow-md shadow-stone-800/75">
       <button
         onClick={() => removePizzaFromCart(pizza._id)}
-        className="absolute right-5 cursor-pointer text-amber-50 duration-300 transition-colors hover:text-white active:text-amber-50"
+        className="absolute  right-5 lg:top-4 cursor-pointer text-amber-50 duration-300 transition-colors hover:text-white active:text-amber-50"
         type="button"
       >
         <X size={36} />
@@ -19,15 +19,17 @@ function CartItemPage({ pizza }: { pizza: ICartItem }) {
         src={pizza.image}
         alt={`${pizza.name} pizza with ${pizza.ingredients.join(", ")}`}
       />
-      <div>
-        <h3 className="text-3xl font-medium tracking-wide whitespace-nowrap text-center mb-2">
-          {pizza.name}
-        </h3>
-        <p className="text-center text-base/normal font-bold tracking-wider text-balance mb-2">
-          {pizza.ingredients.join(" - ")}
-        </p>
+      <div className="flex flex-col justify-between">
+        <div>
+          <h3 className="text-3xl font-medium tracking-wide whitespace-nowrap text-center mb-2 sm:text-left sm:pr-11">
+            {pizza.name}
+          </h3>
+          <p className="text-center text-base/normal font-bold tracking-wider text-balance mb-2  sm:text-left">
+            {pizza.ingredients.join(" - ")}
+          </p>
+        </div>
 
-        <div className="flex items-center justify-between px-5">
+        <div className="flex items-center justify-between px-2 sm:px-0">
           <p className="text-[30px] font-medium tracking-wide whitespace-nowrap text-center">
             {pizza.quantity * pizza.price}€
           </p>

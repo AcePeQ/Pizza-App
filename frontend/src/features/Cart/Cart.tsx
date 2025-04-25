@@ -2,7 +2,7 @@ import Button from "../../components/Button/Button";
 import { useUserStore } from "../../store/useUserStore";
 import CartItemPage from "./CartItemPage";
 
-function Cart() {
+function Cart({ onNextPage }: { onNextPage: () => void }) {
   const { userCart } = useUserStore();
 
   const totalCost =
@@ -11,14 +11,14 @@ function Cart() {
       : 0;
 
   return (
-    <div>
-      <ul className="flex flex-col gap-8 mb-4">
+    <div className="max-w-7xl mx-auto lg:grid lg:grid-cols-[1fr_360px] lg:gap-x-10">
+      <ul className="flex flex-col gap-8 mb-4 lg:mb-0">
         {userCart.map((pizza) => (
           <CartItemPage key={pizza._id} pizza={pizza} />
         ))}
       </ul>
 
-      <div className="flex flex-col gap-2 w-full bg-stone-800 text-amber-50 p-4 rounded-xl shadow-md shadow-stone-800/75">
+      <div className="flex flex-col lg:self-start max-w-[420px] mx-auto sm:max-w-[600px] gap-2 w-full bg-stone-800 text-amber-50 p-4 rounded-xl shadow-md shadow-stone-800/75">
         <p className="flex items-center justify-between text-xl">
           <span>Producte value:</span>
           <span>{totalCost.toFixed(2)}€</span>
@@ -33,7 +33,7 @@ function Cart() {
           <span>{(totalCost + 3.5).toFixed(2)}€</span>
         </p>
 
-        <Button type="primary" size="big">
+        <Button onClick={onNextPage} type="primary" size="big">
           Proceed to checkout
         </Button>
       </div>
