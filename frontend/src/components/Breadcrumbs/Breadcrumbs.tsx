@@ -17,7 +17,7 @@ function Breadcrumbs({
   return (
     <ul className="grid grid-cols-3 gap-x-8 mb-6 px-2">
       {breadcrumbs.map((breadcrumb, index) => (
-        <li className="flex items-center justify-center gap-1.5 grow">
+        <li className="flex items-center justify-center gap-1.5 grow relative">
           <button
             onClick={() => onSetPage(index)}
             className={`flex flex-col items-center cursor-pointer w-full relative hover:text-stone-900 active:text-stone-900 transition-colors duration-300 ${
@@ -28,13 +28,15 @@ function Breadcrumbs({
               {breadcrumb.index}
             </div>
             <p className="text-2xl font-semibold">{breadcrumb.title}</p>
-
-            {breadcrumbs.length - 1 !== index && (
-              <div className="absolute -right-8 top-4/12 -translate-y-6/12">
-                <ArrowRightCircle size={38} />
-              </div>
-            )}
           </button>
+          {breadcrumbs.length - 1 !== index && (
+            <button
+              onClick={() => onSetPage(index + 1)}
+              className="absolute z-20 -right-8 top-4/12 -translate-y-6/12 text-stone-500 duration-300 transition-colors cursor-pointer hover:text-stone-800"
+            >
+              <ArrowRightCircle size={38} />
+            </button>
+          )}
         </li>
       ))}
     </ul>
