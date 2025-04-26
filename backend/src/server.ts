@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { connectDB } from "./config/db.config";
 import authRoutes from "./routes/auth.route";
 import menuRoutes from "./routes/menu.route";
+import accountRoutes from "./routes/account.route";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
@@ -22,6 +23,7 @@ app.use(
 
 app.use("/api/auth", authRoutes);
 app.use("/api/menu", menuRoutes);
+app.use("/api/account", accountRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);
