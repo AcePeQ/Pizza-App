@@ -1,4 +1,5 @@
 import toast from "react-hot-toast";
+import { IShippingAddressPost } from "../features/ShippingAddress/useUpdateShippingAddress";
 
 export interface IRegisterData {
   email: string;
@@ -118,6 +119,33 @@ export async function getShippingAddressApi() {
     if (!res.ok) {
       const error = await res.json();
 
+      throw new Error(error.message);
+    }
+
+    const data = await res.json();
+
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw new Error(error as string);
+  }
+}
+
+export async function updateShippingAddressApi(
+  dataShipping: IShippingAddressPost
+) {
+  try {
+    const res = await fetch("/api/account/updateShippingAddress", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(dataShipping),
+    });
+
+    if (!res.ok) {
+      const error = await res.json();
+      toast.error(error.message);
       throw new Error(error.message);
     }
 

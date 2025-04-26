@@ -7,8 +7,10 @@ import { useGetShippingAddress } from "./useGetShippingAddress";
 import Loader from "../../components/Loaders/Loader/Loader";
 import { useNavigate } from "react-router";
 import { useEffect } from "react";
+import { useUpdateShippingAddress } from "./useUpdateShippingAddress";
 
 interface IShippingAddress {
+  userId: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -29,6 +31,9 @@ function ShippingAddress({
   onPreviousPage: () => void;
 }) {
   const navigate = useNavigate();
+  const { updateShippingAddress, isUpdatingShippingAddress } =
+    useUpdateShippingAddress();
+
   const { isGettingShippingAddress, isShippingAddressError, shippingData } =
     useGetShippingAddress() as {
       shippingData: IShippingAddress;
@@ -61,6 +66,17 @@ function ShippingAddress({
 
   const onSubmit: SubmitHandler<IShippingAddress> = (data) => {
     console.log(data);
+    updateShippingAddress(
+      { ...data, userId: shippingData.userId },
+      {
+        onSuccess: () => {
+          onNextPage();
+        },
+        onError: () => {
+          reset({ ...shippingData });
+        },
+      }
+    );
   };
 
   return (
@@ -176,14 +192,15 @@ function ShippingAddress({
           size="big"
           type="tertiary"
           buttonType="button"
+          isDisabled={isUpdatingShippingAddress}
         >
           Go Back
         </Button>
         <Button
-          onClick={onNextPage}
           size="big"
           type="primary"
           buttonType="submit"
+          isDisabled={isUpdatingShippingAddress}
         >
           Go To Summary
         </Button>
