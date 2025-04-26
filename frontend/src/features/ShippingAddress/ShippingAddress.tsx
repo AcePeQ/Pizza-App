@@ -3,6 +3,10 @@ import FormInput from "../../components/FormInput/FormInput";
 import Select from "react-select";
 import countryOptions from "../../utils/CountryOptions";
 import Button from "../../components/Button/Button";
+import { useGetShippingAddress } from "./useGetShippingAddress";
+import Loader from "../../components/Loaders/Loader/Loader";
+import { useNavigate } from "react-router";
+import { useEffect } from "react";
 
 interface IShippingAddress {
   firstName: string;
@@ -24,12 +28,36 @@ function ShippingAddress({
   onNextPage: () => void;
   onPreviousPage: () => void;
 }) {
+  const navigate = useNavigate();
+  const { isGettingShippingAddress, isShippingAddressError, shippingData } =
+    useGetShippingAddress() as {
+      shippingData: IShippingAddress;
+      isGettingShippingAddress: boolean;
+      isShippingAddressError: boolean;
+    };
+
   const {
     register,
     handleSubmit,
     control,
+    reset,
     formState: { errors },
   } = useForm<IShippingAddress>();
+
+  useEffect(() => {
+    if (shippingData) {
+      reset({ ...shippingData });
+    }
+  }, [reset, shippingData]);
+
+  if (isGettingShippingAddress) {
+    return <Loader />;
+  }
+
+  if (isShippingAddressError) {
+    navigate("/", { replace: true });
+    return;
+  }
 
   const onSubmit: SubmitHandler<IShippingAddress> = (data) => {
     console.log(data);

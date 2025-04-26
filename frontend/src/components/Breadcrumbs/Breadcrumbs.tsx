@@ -17,7 +17,10 @@ function Breadcrumbs({
   return (
     <ul className="grid grid-cols-3 gap-x-8 mb-6 px-2">
       {breadcrumbs.map((breadcrumb, index) => (
-        <li className="flex items-center justify-center gap-1.5 grow relative">
+        <li
+          key={breadcrumb.index}
+          className="flex items-center justify-center gap-1.5 grow relative"
+        >
           <button
             onClick={() => onSetPage(index)}
             className={`flex flex-col items-center cursor-pointer w-full relative hover:text-stone-900 active:text-stone-900 transition-colors duration-300 ${

@@ -105,20 +105,27 @@ export async function checkAuthApi() {
   }
 }
 
-// export async function checkAuthApi() {
-//   const res = await fetch("/api/auth/verifyAuth", {
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     method: "GET",
-//     credentials: "include",
-//   });
+export async function getShippingAddressApi() {
+  try {
+    const res = await fetch("/api/account/shippingAddress", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "GET",
+      credentials: "include",
+    });
 
-//   if (!res.ok) {
-//     return null;
-//   }
+    if (!res.ok) {
+      const error = await res.json();
 
-//   const data = await res.json();
+      throw new Error(error.message);
+    }
 
-//   return data;
-// }
+    const data = await res.json();
+
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw new Error(error as string);
+  }
+}

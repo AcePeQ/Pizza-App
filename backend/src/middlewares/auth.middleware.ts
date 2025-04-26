@@ -37,7 +37,9 @@ export const verifyToken = async (
     }
 
     const user = await User.findById(decoded.userId).select("-password");
-    const userShippingAddress = await ShippmentAddress.findById(decoded.userId);
+    const userShippingAddress = await ShippmentAddress.findOne({
+      userId: decoded.userId,
+    });
 
     if (!user) {
       res.status(400).json({ message: "User not found" });
