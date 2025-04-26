@@ -106,6 +106,10 @@ function ShippingAddress({
                 isSearchable
                 inputId="country"
                 options={countryOptions}
+                value={countryOptions.find(
+                  (option) => option.value === field.value
+                )}
+                onChange={(option) => field.onChange(option?.value)}
                 name={field.name}
                 ref={field.ref}
               />
