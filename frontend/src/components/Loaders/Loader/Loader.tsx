@@ -2,7 +2,7 @@ import styles from "./Loader.module.css";
 
 function Loader() {
   return (
-    <div className="w-full flex align-center justify-center">
+    <div className="w-full flex align-center justify-center my-4">
       <div className={styles.loader}>
         <span className={`${styles["loader-text"]}`}>loading</span>
         <span className={styles.load}></span>

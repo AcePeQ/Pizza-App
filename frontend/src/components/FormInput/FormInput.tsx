@@ -14,7 +14,7 @@ function FormInput({
   }>;
 }) {
   return (
-    <div className="flex flex-col justify-start gap-2.5 text-xl font-medium relative">
+    <div className="flex flex-col justify-start gap-2 text-[22px] font-medium relative lg:text-2xl">
       <label
         className="inline-block w-max tracking-wide"
         htmlFor={children.props.id || inputId}

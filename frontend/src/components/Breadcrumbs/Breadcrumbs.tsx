@@ -15,7 +15,7 @@ function Breadcrumbs({
   onSetPage: (page: number) => void;
 }) {
   return (
-    <ul className="grid grid-cols-3 gap-x-8 mb-6 mx-0.5">
+    <ul className="grid grid-cols-3 gap-x-8 mb-6 px-2">
       {breadcrumbs.map((breadcrumb, index) => (
         <li className="flex items-center justify-center gap-1.5 grow">
           <button
