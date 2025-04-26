@@ -100,6 +100,15 @@ Hover: hover:bg-stone-600 hover:text-white
 
   font-size: 18px !important;
   font-weight: 600 !important;
+
+  transition: all 0.3s;
+}
+
+.select__control:focus-within {
+  outline-offset: 2px !important;
+  outline-width: 2px !important;
+  outline-style: solid !important;
+  outline-color: oklch(0.987 0.022 95.277) !important;
 }
 
 .select__single--value,
