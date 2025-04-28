@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { AuthRequest } from "../middlewares/auth.middleware";
+import ShippmentAddress from "../models/shippingAddress.model";
 
 export const shippingAddress = async (req: Request, res: Response) => {
   try {
@@ -26,14 +27,38 @@ export const shippingAddress = async (req: Request, res: Response) => {
 
 export const updateShippingAddress = async (req: Request, res: Response) => {
   try {
-    const authReq = req as AuthRequest;
+    const {
+      address,
+      city,
+      country,
+      firstName,
+      lastName,
+      phoneNumber,
+      userId,
+      zipCode,
+    } = req.body;
 
-    if (!authReq.user) {
-      res.status(401).json({ message: "Unauthorized - No User Found" });
+    if (
+      !address ||
+      !city ||
+      !firstName ||
+      !lastName ||
+      !country ||
+      !phoneNumber ||
+      !userId ||
+      !zipCode
+    ) {
+      res
+        .status(400)
+        .json({ message: "Make sure you send all necessary data" });
       return;
     }
 
-    const userShippingAddress = authReq.userShippingAddress;
+    const userShippingAddress = await ShippmentAddress.findOneAndUpdate(
+      { userId },
+      { address, city, country, lastName, firstName, phoneNumber, zipCode },
+      { new: true }
+    );
 
     if (!userShippingAddress) {
       res.status(401).json({ message: "Unauthorized - No User Found" });

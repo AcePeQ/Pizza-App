@@ -65,7 +65,6 @@ function ShippingAddress({
   }
 
   const onSubmit: SubmitHandler<IShippingAddress> = (data) => {
-    console.log(data);
     updateShippingAddress(
       { ...data, userId: shippingData.userId },
       {
