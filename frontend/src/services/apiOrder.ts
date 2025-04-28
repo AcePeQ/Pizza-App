@@ -1,13 +1,15 @@
 import toast from "react-hot-toast";
+import { ICreatePost } from "../features/Order/useCreateOrder";
 
-export async function createOrderApi(dataOrder) {
+export async function createOrderApi(dataOrder: ICreatePost) {
   try {
-    const res = await fetch("/api/account/updateShippingAddress", {
+    const res = await fetch("/api/order/order", {
       headers: {
         "Content-Type": "application/json",
       },
       method: "POST",
       body: JSON.stringify(dataOrder),
+      credentials: "include",
     });
 
     if (!res.ok) {

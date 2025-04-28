@@ -14,21 +14,24 @@ export interface IOrder extends Document {
   pizzas: IOrderPizza[];
 }
 
-const orderSchema = new Schema<IOrder>({
-  userId: { type: Schema.Types.ObjectId, required: true, ref: "User" },
-  pizzas: {
-    type: [
-      {
-        name: { type: String, required: true },
-        quantity: { type: Number, required: true },
-        image: { type: String, required: true },
-        price: { type: Number, required: true },
-        ingredients: { type: [String], required: true },
-      },
-    ],
-    required: true,
+const orderSchema = new Schema<IOrder>(
+  {
+    userId: { type: Schema.Types.ObjectId, required: true, ref: "User" },
+    pizzas: {
+      type: [
+        {
+          name: { type: String, required: true },
+          quantity: { type: Number, required: true },
+          image: { type: String, required: true },
+          price: { type: Number, required: true },
+          ingredients: { type: [String], required: true },
+        },
+      ],
+      required: true,
+    },
   },
-});
+  { timestamps: true }
+);
 
 const Order = mongoose.model<IOrder>("order", orderSchema);
 

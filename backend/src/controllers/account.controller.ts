@@ -65,7 +65,9 @@ export const updateShippingAddress = async (req: Request, res: Response) => {
       return;
     }
 
-    res.status(200).json(userShippingAddress);
+    res
+      .status(201)
+      .json({ message: "Shipping Addres has been successfully saved" });
   } catch (error) {
     console.log(`Error in shipping address controller: ${error}`);
     res.status(500).json({ message: "Internal Server Error" });
