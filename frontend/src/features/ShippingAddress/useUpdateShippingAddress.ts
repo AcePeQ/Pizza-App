@@ -19,8 +19,6 @@ export function useUpdateShippingAddress() {
     isPending: isUpdatingShippingAddress,
   } = useMutation({
     mutationFn: (data: IShippingAddressPost) => updateShippingAddressApi(data),
-    onSuccess: () => {},
-    onError: () => {},
   });
 
   return { updateShippingAddress, isUpdatingShippingAddress };

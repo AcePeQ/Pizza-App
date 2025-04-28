@@ -3,6 +3,7 @@ import { useUserStore } from "../../store/useUserStore";
 import { useState } from "react";
 import ShippingAddress from "../../features/ShippingAddress/ShippingAddress";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
+import PlaceOrder from "../../features/Order/PlaceOrder";
 
 const breadcrumbsNavigation = [
   { index: 0, title: "Cart" },
@@ -48,6 +49,7 @@ function CartPage() {
             onPreviousPage={handlePreviousPage}
           />
         )}
+        {curIndex === 2 && <PlaceOrder onPreviousPage={handlePreviousPage} />}
       </section>
     </div>
   );
