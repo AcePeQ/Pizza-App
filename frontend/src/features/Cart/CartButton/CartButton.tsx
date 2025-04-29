@@ -15,7 +15,10 @@ function CartButton() {
   return (
     <div className="cart_button relative">
       <button
-        onClick={() => navigate("/cart")}
+        onClick={() => {
+          if (userCart.length === 0) return;
+          navigate("/cart");
+        }}
         className="rotate-y-180 cursor-pointer relative flex justify-center items-center transition-colors duration-300 text-amber-100 hover:text-white active:text-white"
       >
         <ShoppingCart size={30} />
