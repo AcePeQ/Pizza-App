@@ -5,5 +5,4 @@ export const MainNavbarLinks = [
 
 export const ProfileLinks = [
   { name: "Profile", path: "/profile", icon: "profile" },
-  { name: "Settings", path: "/settings", icon: "settings" },
 ];

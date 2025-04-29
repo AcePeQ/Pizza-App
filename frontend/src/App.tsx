@@ -4,6 +4,7 @@ import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import LoaderFull from "./components/Loaders/LoaderFull/LoaderFull";
+import LayoutProfile from "./layouts/LayoutProfile/LayoutProfile";
 
 const Layout = lazy(() => import("./layouts/Layout/Layout"));
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
@@ -31,9 +32,11 @@ function App() {
               <Route index element={<HomePage />} />
               <Route path="/menu" element={<MenuPage />} />
               <Route path="/cart" element={<CartPage />} />
-              <Route path="/profile" element={<ProfilePage />} />
               <Route path="/settings" element={<SettingsPage />} />
               <Route path="*" element={<PageNotFound />} />
+            </Route>
+            <Route element={<LayoutProfile />}>
+              <Route path="/profile" element={<ProfilePage />} />
             </Route>
           </Routes>
         </Suspense>
