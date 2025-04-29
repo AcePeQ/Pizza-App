@@ -1,4 +1,5 @@
 import { CircleArrowLeft, CircleArrowRight } from "lucide-react";
+import { motion } from "motion/react";
 import { useState } from "react";
 
 const workSteps = [
@@ -43,8 +44,12 @@ function Steps() {
 
   return (
     <div className="max-w-[640px] min-h-[560px] mx-auto md:grid md:grid-cols-2 md:gap-x-14 md:max-w-7xl md:items-center">
-      <div className="min-h-[320px] sm:min-h-[420px] flex items-center justify-center">
-        <img
+      <div className="min-h-[320px] sm:h-[420px] flex items-center justify-center">
+        <motion.img
+          key={currentStep}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0 }}
           className="max-w-[320px] sm:max-w-[420px] mx-auto lg:max-w-[560px]  w-full lg:w-full  "
           src={`/steps/step-${currentStep}.png`}
         />

@@ -2,7 +2,7 @@ import Steps from "./Steps/Steps";
 
 function WorkSteps() {
   return (
-    <section className="py-18 px-3 lg:py-26">
+    <section className="py-18 px-3 lg:py-20">
       <h2 className="text-center font-header text-4xl/tight font-bold text-pretty mb-10">
         How does it{" "}
         <span className="inline-block relative z-2 text-amber-50">
