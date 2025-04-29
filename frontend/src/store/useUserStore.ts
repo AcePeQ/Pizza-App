@@ -26,6 +26,7 @@ interface IUserState {
 
   addPizzaToCart: (pizza: ICartItem) => void;
   removePizzaFromCart: (pizzaId: string) => void;
+  clearCart: () => void;
 
   decreaseQuantity: (pizzaId: string) => void;
   increaseQuantity: (pizzaId: string) => void;
@@ -71,6 +72,11 @@ export const useUserStore = create<IUserState>((set) => ({
       localStorage.setItem("userCart", JSON.stringify(updatedCart));
       return { userCart: updatedCart };
     });
+  },
+
+  clearCart: () => {
+    set(() => ({ userCart: [] }));
+    localStorage.removeItem("userCart");
   },
 
   decreaseQuantity: (pizzaId: string) => {
