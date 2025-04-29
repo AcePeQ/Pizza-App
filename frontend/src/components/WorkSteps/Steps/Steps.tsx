@@ -42,11 +42,13 @@ function Steps() {
   }
 
   return (
-    <div className="max-w-[640px] mx-auto md:grid md:grid-cols-2 md:gap-x-14 md:max-w-7xl md:items-center">
-      <img
-        className="max-w-[320px] mx-auto lg:max-w-[560px] lg:w-full "
-        src="/plane-world.png"
-      />
+    <div className="max-w-[640px] min-h-[560px] mx-auto md:grid md:grid-cols-2 md:gap-x-14 md:max-w-7xl md:items-center">
+      <div className="min-h-[320px] sm:min-h-[420px] flex items-center justify-center">
+        <img
+          className="max-w-[320px] sm:max-w-[420px] mx-auto lg:max-w-[560px]  w-full lg:w-full  "
+          src={`/steps/step-${currentStep}.png`}
+        />
+      </div>
 
       <div className="mt-8">
         <p className="font-bold text-lg inline-block relative tracking-wide mb-3 before:content-[''] before:absolute before:-bottom-0.5 before:left-0 before:w-full before:h-1 before:bg-green-700 before:rounded-sm">

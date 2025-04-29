@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router";
 import Button from "../Button/Button";
 
 function Hero() {
+  const navigate = useNavigate();
+
   return (
     <section className="flex items-start justify-center w-full hero-height  relative">
       <video
@@ -24,7 +27,12 @@ function Hero() {
         </p>
 
         <div className="flex items-center justify-center mt-12">
-          <Button buttonType="button" type="primary" size="big">
+          <Button
+            onClick={() => navigate("/menu")}
+            buttonType="button"
+            type="primary"
+            size="big"
+          >
             Order Now
           </Button>
         </div>

@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import { lazy, Suspense } from "react";
-import LoaderFull from "./components/Loaders/LoaderFull/LoaderFull";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
-import CartPage from "./pages/CartPage/CartPage";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+import LoaderFull from "./components/Loaders/LoaderFull/LoaderFull";
 
 const Layout = lazy(() => import("./layouts/Layout/Layout"));
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
@@ -11,6 +11,7 @@ const MenuPage = lazy(() => import("./pages/MenuPage/MenuPage"));
 const ProfilePage = lazy(() => import("./pages/ProfilePage/ProfilePage"));
 const SettingsPage = lazy(() => import("./pages/SettingsPage/SettingsPage"));
 const PageNotFound = lazy(() => import("./pages/PageNotFound/PageNotFound"));
+const CartPage = lazy(() => import("./pages/CartPage/CartPage"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -41,7 +42,7 @@ function App() {
       <Toaster
         position="top-center"
         gutter={12}
-        containerStyle={{ margin: "8px", zIndex: "1000" }}
+        containerStyle={{ margin: "14px", zIndex: "1000" }}
         toastOptions={{
           style: {
             backgroundColor: "oklch(0.987 0.022 95.277)",
