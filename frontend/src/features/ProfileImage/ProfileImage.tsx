@@ -2,10 +2,11 @@ import { useState } from "react";
 import { useUserStore } from "../../store/useUserStore";
 import { ImageUp } from "lucide-react";
 import { useUpdateAvatar } from "./useUpdateAvatar";
+import LoaderFull from "../../components/Loaders/LoaderFull/LoaderFull";
 
 function ProfileImage() {
   const { user } = useUserStore();
-  const { updateAvatarFn } = useUpdateAvatar();
+  const { updateAvatarFn, isUpdatingAvatar } = useUpdateAvatar();
   const [selectedImg, setSelectedImg] = useState<string | null | ArrayBuffer>(
     null
   );
@@ -26,6 +27,7 @@ function ProfileImage() {
 
   return (
     <figure className="flex flex-col h-[265px] w-[270px] items-center mx-auto -top-16 relative">
+      {isUpdatingAvatar && <LoaderFull />}
       <img
         className="pointer-events-none mx-auto h-[265px] min-w-[270px] object-cover  w-auto rounded-full border-8"
         src={
@@ -38,7 +40,7 @@ function ProfileImage() {
       />
       <label
         htmlFor="avatar-upload"
-        className="absolute bottom-4 right-4 p-2 cursor-pointer rounded-full bg-amber-50 text-stone-800 border-4 border-stone-800 flex items-center justify-center z-50 h-[64px] w-[64px]"
+        className="absolute bottom-4 right-4 p-2 cursor-pointer rounded-full bg-amber-50 text-stone-800 border-4 border-stone-800 flex items-center justify-center z-40 h-[64px] w-[64px]"
       >
         <ImageUp size={36} />
         <input

@@ -25,7 +25,30 @@ export const createOrder = async (req: Request, res: Response) => {
     }
 
     await newOrder.save();
-    res.status(201).json({ message: "The order has been placed successfully" });
+    res.status(200).json({ message: "The order has been placed successfully" });
+  } catch (error) {
+    console.log(`Error in pizza menu ingredients controller: ${error}`);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+export const orderHistory = async (req: Request, res: Response) => {
+  try {
+    const authReq = req as AuthRequest;
+
+    if (!authReq.user) {
+      res.status(401).json({ message: "Unauthorized - No User Found" });
+      return;
+    }
+
+    const orders = await Order.find().sort({ createdAt: -1 });
+
+    if (!orders) {
+      res.status(401).json({ message: "There is no order history" });
+      return;
+    }
+
+    res.status(200).json(orders);
   } catch (error) {
     console.log(`Error in pizza menu ingredients controller: ${error}`);
     res.status(500).json({ message: "Internal Server Error" });

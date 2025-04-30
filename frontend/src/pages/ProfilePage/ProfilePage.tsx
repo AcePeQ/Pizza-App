@@ -1,10 +1,9 @@
+import OrderHistory from "../../features/OrderHistory/OrderHistory";
 import ProfileImage from "../../features/ProfileImage/ProfileImage";
 import { useUserStore } from "../../store/useUserStore";
 
 function ProfilePage() {
   const { user } = useUserStore();
-
-  console.log(user);
 
   return (
     <section className="w-full h-full pt-40">
@@ -15,8 +14,11 @@ function ProfilePage() {
             {user?.displayName}
           </h1>
         </div>
-        <div className="md:rounded-t-xl text-amber-50 p-4">
-          fdfsdfsddddddddddddddddddd
+        <div className="md:rounded-t-xl text-amber-50 ">
+          <h2 className="text-center font-header text-4xl/tight font-bold text-pretty mb-10 border-b-4 border-amber-50 py-4">
+            My orders
+          </h2>
+          <OrderHistory />
         </div>
       </div>
     </section>
