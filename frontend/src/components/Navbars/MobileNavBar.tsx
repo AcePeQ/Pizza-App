@@ -68,7 +68,6 @@ function MobileNavbar() {
 
       <div
         ref={menuRef}
-        aria-hidden={menuOpen}
         className={`flex z-[100000] p-1.5  duration-700 ease-in-out bg-stone-700 ${
           menuOpen
             ? "translate-y-full shadow-lg shadow-stone-900/30"

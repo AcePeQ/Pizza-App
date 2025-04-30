@@ -50,10 +50,10 @@ function ProfileMenu() {
         aria-label={menuOpen ? "Close menu" : "Open menu"}
         onClick={handleToggleMenu}
         aria-expanded={menuOpen}
-        className="flex cursor-pointer rounded-full  w-9.5 h-9.5"
+        className="flex cursor-pointer rounded-full w-9.5 h-9.5"
       >
         <img
-          className="pointer-events-none"
+          className="pointer-events-none w-9.5 h-9.5 object-cover rounded-full"
           src={`${user?.profilePicture ? user.profilePicture : "/avatar.png"}`}
           alt="user profile photography"
         />

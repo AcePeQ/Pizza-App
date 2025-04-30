@@ -24,6 +24,8 @@ interface IUserState {
   logout: () => void;
   checkAuth: (userData: IUser) => void;
 
+  updateAvatar: (userData: IUser) => void;
+
   addPizzaToCart: (pizza: ICartItem) => void;
   removePizzaFromCart: (pizzaId: string) => void;
   clearCart: () => void;
@@ -53,6 +55,12 @@ export const useUserStore = create<IUserState>((set) => ({
     const cart = JSON.parse(localStorage.getItem("userCart") as string) || [];
 
     set(() => ({ user: userData, userCart: cart }));
+    sessionStorage.setItem("user", JSON.stringify(userData));
+  },
+
+  updateAvatar: (userData: IUser) => {
+    set(() => ({ user: userData }));
+
     sessionStorage.setItem("user", JSON.stringify(userData));
   },
 

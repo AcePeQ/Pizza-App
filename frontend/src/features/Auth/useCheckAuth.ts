@@ -7,7 +7,7 @@ export function useCheckAuth() {
   const { mutate: checkAuthFn } = useMutation({
     mutationFn: () => checkAuthApi(),
     onSuccess: (data) => {
-      if (!user) checkAuth(data);
+      if (!user) checkAuth(data.user);
     },
     onError: () => {
       if (user) logout();
