@@ -25,7 +25,7 @@ function LayoutProfile() {
       <header className="w-full fixed top-0 left-0 z-[90] h-[52px]">
         {!isDesktop ? <DesktopNavbar /> : <MobileNavbar />}
       </header>
-      <main className="mt-[52px]">
+      <main className="mt-[52px] overflow-hidden">
         <Outlet />
       </main>
     </div>
