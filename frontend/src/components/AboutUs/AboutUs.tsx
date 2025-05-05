@@ -1,3 +1,6 @@
+import { motion } from "motion/react";
+import { fadeInDown } from "../../utils/animationVariants";
+
 const stats = [
   { name: "Our pizzerias", value: "100+" },
   { name: "We are always available", value: "24/7" },
@@ -15,7 +18,13 @@ function AboutUs() {
       />
       <div className="absolute top-0 left-0 w-full h-full bg-linear-to-r from-stone-800/85 to-stone-800/85"></div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+      <motion.div
+        variants={fadeInDown}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8"
+      >
         <div className="mx-auto max-w-2xl lg:mx-0">
           <h2 className="text-4xl/tight font-header font-semibold tracking-tight text-white">
             Get to know us
@@ -39,7 +48,7 @@ function AboutUs() {
             ))}
           </dl>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

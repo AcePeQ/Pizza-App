@@ -1,6 +1,7 @@
 import { CircleArrowLeft, CircleArrowRight } from "lucide-react";
 import { motion } from "motion/react";
 import { useState } from "react";
+import { popUp } from "../../../utils/animationVariants";
 
 const workSteps = [
   {
@@ -47,9 +48,10 @@ function Steps() {
       <div className="min-h-[320px] sm:h-[420px] flex items-center justify-center">
         <motion.img
           key={currentStep}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0 }}
+          variants={popUp}
+          initial="start"
+          animate="animate"
+          exit="exit"
           className="max-w-[320px] sm:max-w-[420px] mx-auto lg:max-w-[560px]  w-full lg:w-full  "
           src={`/steps/step-${currentStep}.png`}
         />

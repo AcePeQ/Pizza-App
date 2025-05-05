@@ -1,8 +1,11 @@
 import Button from "../../../components/Button/Button";
 import { useModalStore } from "../../../store/useModalStore";
 import { useUserStore } from "../../../store/useUserStore";
+import { popUpSlower } from "../../../utils/animationVariants";
 import { IPizzaMenuItem } from "../Menu";
 import PizzaIngredient from "./PizzaIngredient";
+
+import { motion } from "motion/react";
 
 function PizzaCard({ pizza }: { pizza: IPizzaMenuItem }) {
   const { user, userCart, addPizzaToCart, removePizzaFromCart } =
@@ -34,7 +37,13 @@ function PizzaCard({ pizza }: { pizza: IPizzaMenuItem }) {
   }
 
   return (
-    <li className="relative [perspective:1000px]">
+    <motion.li
+      variants={popUpSlower}
+      initial="start"
+      whileInView="animate"
+      viewport={{ once: true }}
+      className="relative [perspective:1000px]"
+    >
       <div
         tabIndex={0}
         className="pizza-card bg-stone-800 p-6 rounded-3xl duration-500 transition-all shadow-xl shadow-stone-800/85 hover:[transform:rotateX(35deg)] hover:shadow-2xl [transform-style:preserve-3d] backface-hidden will-change-transform flex flex-col items-center min-w-[256] max-w-[256] focus-within:[transform:rotateX(35deg)] focus-within:shadow-2xl"
@@ -79,7 +88,7 @@ function PizzaCard({ pizza }: { pizza: IPizzaMenuItem }) {
           <PizzaIngredient key={index} index={index} ingredient={ingredient} />
         ))}
       </div>
-    </li>
+    </motion.li>
   );
 }
 

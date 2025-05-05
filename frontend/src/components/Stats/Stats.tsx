@@ -1,9 +1,17 @@
+import { fadeInDown } from "../../utils/animationVariants";
 import StatCard from "./StatCard/StatCard";
+import { motion } from "motion/react";
 
 function Stats() {
   return (
     <section className="my-20">
-      <div className="max-w-5xl mx-auto md:max-w-full">
+      <motion.div
+        variants={fadeInDown}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="max-w-5xl mx-auto md:max-w-full"
+      >
         <h2 className="text-center font-header text-4xl/tight font-bold text-pretty mb-10">
           We don't count calories, Just slices!
         </h2>
@@ -17,7 +25,7 @@ function Stats() {
           />
           <StatCard statText="20+" subText="🌎 Pizza Flavors" />
         </article>
-      </div>
+      </motion.div>
     </section>
   );
 }

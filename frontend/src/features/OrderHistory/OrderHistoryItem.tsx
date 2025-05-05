@@ -45,6 +45,7 @@ function OrderHistoryItem({ order }: { order: IOrderHistoryItem }) {
             exit={{
               height: 0,
             }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
           >
             <div className="flex flex-col gap-4 mt-4">
               {order.pizzas.map((pizza) => (

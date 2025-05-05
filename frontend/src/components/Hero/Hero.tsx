@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router";
+import { motion } from "motion/react";
 import Button from "../Button/Button";
+import { fadeInUp } from "../../utils/animationVariants";
 
 function Hero() {
   const navigate = useNavigate();
@@ -15,7 +17,12 @@ function Hero() {
         <source src="/backgrounds/homepage_video.mp4" type="video/mp4" />
       </video>
       <div className="absolute top-0 left-0 w-full h-full bg-linear-to-r from-stone-800/85 to-stone-800/85"></div>
-      <div className="w-full h-full px-3  relative z-10 flex flex-col items-center justify-center">
+      <motion.div
+        variants={fadeInUp}
+        initial="hidden"
+        animate="visible"
+        className="w-full h-full px-3  relative z-10 flex flex-col items-center justify-center"
+      >
         <h1 className="text-center text-amber-50 font-accent text-5xl font-bold tracking-wider text-pretty">
           PizzWorld - Pizza, wherever you are!
         </h1>
@@ -36,7 +43,7 @@ function Hero() {
             Order Now
           </Button>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
