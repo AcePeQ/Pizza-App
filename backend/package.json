@@ -1,7 +1,8 @@
 {
   "main": "src/server.ts",
   "scripts": {
-    "dev": "nodemon src/server.ts"
+    "dev": "nodemon src/server.ts",
+    "start": "node src/server.ts"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -11,7 +12,8 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.12.1"
+    "mongoose": "^8.12.1",
+    "pizza-app": "file:.."
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",

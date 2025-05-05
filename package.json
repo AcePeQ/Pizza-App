@@ -2,5 +2,17 @@
   "dependencies": {
     "motion": "^12.9.2",
     "react-hook-form": "^7.54.2"
-  }
+  },
+  "name": "pizza-app",
+  "description": "",
+  "version": "1.0.0",
+  "main": "src/server.ts",
+  "devDependencies": {},
+  "scripts": {
+    "build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend",
+    "start": "npm run start --prefix backend"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

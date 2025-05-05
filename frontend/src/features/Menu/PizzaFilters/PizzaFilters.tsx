@@ -3,6 +3,8 @@ import PizzaFilter from "./PizzaFilter";
 import { sortByOptions } from "../../../utils/FilterOptions";
 import React from "react";
 import { useIngredients } from "../useIngredients";
+import Loader from "../../../components/Loaders/Loader/Loader";
+import Error from "../../../components/Error/Error";
 
 export interface IFiltersState {
   sortBy: { label: string; value: string };
@@ -30,7 +32,11 @@ function PizzaFilters({
   } = useIngredients();
 
   if (isGettingIngredients) {
-    return <p>Return</p>;
+    return <Loader />;
+  }
+
+  if (isIngredientsError) {
+    return <Error error={ingredientsError?.message} />;
   }
 
   return (
