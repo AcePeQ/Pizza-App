@@ -37,6 +37,7 @@ function App() {
             </Route>
             <Route element={<LayoutProfile />}>
               <Route path="/profile" element={<ProfilePage />} />
+              <Route path="*" element={<PageNotFound />} />
             </Route>
           </Routes>
         </Suspense>
