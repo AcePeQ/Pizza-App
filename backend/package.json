@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "nodemon src/server.ts",
     "build": "tsc",
-    "start": "node src/server.ts"
+    "start": "node src/server.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
