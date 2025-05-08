@@ -9,7 +9,7 @@ export function useOrderHistory(userId: string | undefined) {
     error: historyOrderError,
     data: historyOrderData,
   } = useQuery({
-    queryKey: ["historyOrders"],
+    queryKey: ["historyOrders", userId],
     queryFn: () => getHistoryOrderApi(userId),
   });
 

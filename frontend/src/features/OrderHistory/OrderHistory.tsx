@@ -12,6 +12,7 @@ export interface IOrderHistoryItem {
 
 function OrderHistory() {
   const { user } = useUserStore();
+
   const {
     isGettingHistoryOrder,
     historyOrderData,
