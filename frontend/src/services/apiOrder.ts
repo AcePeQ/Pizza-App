@@ -1,9 +1,10 @@
 import toast from "react-hot-toast";
 import { ICreatePost } from "../features/Order/useCreateOrder";
+import API_URL from "../utils/apiUrl";
 
 export async function createOrderApi(dataOrder: ICreatePost) {
   try {
-    const res = await fetch("/api/order/order", {
+    const res = await fetch(`${API_URL}/api/order/order`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -29,13 +30,16 @@ export async function createOrderApi(dataOrder: ICreatePost) {
 
 export async function getHistoryOrderApi(userId: string | undefined) {
   try {
-    const res = await fetch(`/api/order/order-history?userId=${userId}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "GET",
-      credentials: "include",
-    });
+    const res = await fetch(
+      `${API_URL}/api/order/order-history?userId=${userId}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "GET",
+        credentials: "include",
+      }
+    );
 
     if (!res.ok) {
       const error = await res.json();

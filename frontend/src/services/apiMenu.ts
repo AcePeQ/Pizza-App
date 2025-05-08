@@ -1,10 +1,13 @@
 import toast from "react-hot-toast";
 import { IFiltersState } from "../features/Menu/PizzaFilters/PizzaFilters";
+import API_URL from "../utils/apiUrl";
 
 export async function getMenuApi(filters: IFiltersState) {
   try {
     const res = await fetch(
-      `/api/menu/pizzaMenu?sortBy=${filters.sortBy.value}&ingredients=${
+      `${API_URL}/api/menu/pizzaMenu?sortBy=${
+        filters.sortBy.value
+      }&ingredients=${
         filters.ingredients.length > 0
           ? filters.ingredients.map((ingredient) => ingredient.value).join(",")
           : null
@@ -35,7 +38,7 @@ export async function getMenuApi(filters: IFiltersState) {
 
 export async function getIngredientsApi() {
   try {
-    const res = await fetch(`/api/menu/ingredients`, {
+    const res = await fetch(`${API_URL}/api/menu/ingredients`, {
       headers: {
         "Content-Type": "application/json",
       },
