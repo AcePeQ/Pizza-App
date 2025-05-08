@@ -41,7 +41,11 @@ export const orderHistory = async (req: Request, res: Response) => {
       return;
     }
 
-    const orders = await Order.find().sort({ createdAt: -1 });
+    console.log(authReq);
+
+    const orders = await Order.find({ userId: authReq.user._id }).sort({
+      createdAt: -1,
+    });
 
     if (!orders) {
       res.status(401).json({ message: "There is no order history" });
