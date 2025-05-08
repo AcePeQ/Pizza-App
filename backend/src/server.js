@@ -13,6 +13,8 @@ const order_route_1 = __importDefault(require("./routes/order.route"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const cors_1 = __importDefault(require("cors"));
 const path_1 = __importDefault(require("path"));
+// https://pizza-app-front-end.onrender.com
+// http://localhost:5173
 const app = (0, express_1.default)();
 dotenv_1.default.config();
 const PORT = process.env.PORT;
@@ -21,7 +23,7 @@ app.use(express_1.default.json({ limit: "10mb" }));
 app.use(express_1.default.urlencoded({ extended: true, limit: "10mb" }));
 app.use((0, cookie_parser_1.default)());
 app.use((0, cors_1.default)({
-    origin: "*",
+    origin: "https://pizza-app-front-end.onrender.com",
     credentials: true,
 }));
 app.use("/api/auth", auth_route_1.default);

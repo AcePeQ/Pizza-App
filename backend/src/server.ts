@@ -9,6 +9,9 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import path from "path";
 
+// https://pizza-app-front-end.onrender.com
+// http://localhost:5173
+
 const app = express();
 dotenv.config();
 
@@ -21,7 +24,7 @@ app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "*",
+    origin: "https://pizza-app-front-end.onrender.com",
     credentials: true,
   })
 );
