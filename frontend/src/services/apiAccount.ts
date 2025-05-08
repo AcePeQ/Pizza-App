@@ -95,6 +95,7 @@ export async function checkAuthApi() {
         "Content-Type": "application/json",
       },
       method: "POST",
+      credentials: "include",
     });
 
     if (!res.ok) {
