@@ -28,13 +28,14 @@ function OrderHistory() {
   }
 
   return (
-    <div className="px-4 overflow-auto">
-      <div className="grid grid-cols-[minmax(280px,_1fr)_1fr_32px] gap-4  text-3xl font-medium tracking-wide p-4">
+    <div className="px-4 overflow-auto ">
+      <div className="grid grid-cols-[minmax(280px,_1fr)_1fr_1fr_32px] min-w-[740px]  gap-4 text-3xl font-medium tracking-wide p-4">
         <p>Order ID</p>
         <p className="whitespace-nowrap">Ordered at</p>
+        <p className="whitespace-nowrap">Status</p>
         <p>&nbsp;</p>
       </div>
-      <ul className="flex flex-col gap-3 min-w-[580px] overflow-auto pb-4">
+      <ul className="flex flex-col gap-3 min-w-[740px] overflow-auto pb-4">
         {historyOrderData.map((order: IOrderHistoryItem) => (
           <OrderHistoryItem key={order._id} order={order} />
         ))}

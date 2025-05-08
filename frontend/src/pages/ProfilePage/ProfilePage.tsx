@@ -7,10 +7,10 @@ function ProfilePage() {
 
   return (
     <section className="w-full h-full pt-40 ">
-      <div className="w-full h-full bg-stone-800 md:grid min-[900px]:grid-cols-[max-content_1fr] min-[900px]:rounded-t-xl max-w-[1420px] mx-auto mb-5">
-        <div className="min-[900px]:grid min-[900px]:grid-cols-1 min-[900px]:grid-rows-[240px_1fr] items-start min-[900px]:p-4 pt-0 min-[900px]:border-r-4 border-amber-50 ">
+      <div className="w-full h-full bg-stone-800 md:grid min-[1145px]:grid-cols-[max-content_1fr] min-[1145px]:rounded-t-xl max-w-[1420px] mx-auto mb-5">
+        <div className="min-[1145px]:grid min-[1145px]:grid-cols-1 min-[1145px]:grid-rows-[240px_1fr] items-start min-[1145px]:p-4 pt-0 min-[1145px]:border-r-4 border-amber-50 ">
           <ProfileImage />
-          <h1 className=" text-stone-800 bg-amber-50 text-5xl py-6 text-center font-semibold tracking-wide px-2 min-[900px]:bg-stone-800 min-[900px]:text-amber-50 relative -mt-12">
+          <h1 className=" text-stone-800 bg-amber-50 text-5xl py-6 text-center font-semibold tracking-wide px-2 min-[1145px]:bg-stone-800 min-[1145px]:text-amber-50 relative -mt-12">
             {user?.displayName}
           </h1>
         </div>
