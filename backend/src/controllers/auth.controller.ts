@@ -140,7 +140,13 @@ export const updateProfile = async (req: Request, res: Response) => {
 
 export const logout = async (_: Request, res: Response) => {
   try {
-    res.cookie("jwt", "", { maxAge: 0 });
+    res.cookie("jwt", "", {
+      maxAge: 0,
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+    });
+
     res.status(200).json({ message: "Logged out successfully" });
   } catch (error) {
     console.log(`Error in logout controller: ${error}`);
