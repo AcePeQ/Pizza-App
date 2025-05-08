@@ -47,7 +47,9 @@ const orderHistory = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             res.status(401).json({ message: "Unauthorized - No User Found" });
             return;
         }
-        const orders = yield order_model_1.default.find().sort({ createdAt: -1 });
+        const orders = yield order_model_1.default.find({ userId: authReq.user._id }).sort({
+            createdAt: -1,
+        });
         if (!orders) {
             res.status(401).json({ message: "There is no order history" });
             return;

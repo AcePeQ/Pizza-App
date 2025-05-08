@@ -41,8 +41,6 @@ export const orderHistory = async (req: Request, res: Response) => {
       return;
     }
 
-    console.log(authReq);
-
     const orders = await Order.find({ userId: authReq.user._id }).sort({
       createdAt: -1,
     });
