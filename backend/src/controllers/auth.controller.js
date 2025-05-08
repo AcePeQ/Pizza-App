@@ -121,7 +121,12 @@ const updateProfile = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 exports.updateProfile = updateProfile;
 const logout = (_, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        res.cookie("jwt", "", { maxAge: 0 });
+        res.cookie("jwt", "", {
+            maxAge: 0,
+            httpOnly: true,
+            secure: true,
+            sameSite: "none",
+        });
         res.status(200).json({ message: "Logged out successfully" });
     }
     catch (error) {
