@@ -28,10 +28,6 @@ function Menu() {
     setFilterMenu(false);
   }
 
-  if (isGettingMenu) {
-    return <Loader />;
-  }
-
   if (isMenuError) {
     return <Error error={menuError?.message} />;
   }
@@ -67,11 +63,15 @@ function Menu() {
         setFilters={setFilters}
       />
 
-      <ul className="grid grid-cols-[256px] gap-30 items-center justify-center sm:grid sm:grid-cols-[256px_256px] sm:gap-x-12 sm:justify-center lg:grid-cols-[256px_256px_256px] xl:grid-cols-[256px_256px_256px_256px] 2xl:grid-cols-[256px_256px_256px_256px_256px]">
-        {menuData.map((pizza: IPizzaMenuItem) => (
-          <PizzaCard key={`${pizza._id}`} pizza={pizza} />
-        ))}
-      </ul>
+      {isGettingMenu ? (
+        <Loader />
+      ) : (
+        <ul className="grid grid-cols-[256px] gap-30 items-center justify-center sm:grid sm:grid-cols-[256px_256px] sm:gap-x-12 sm:justify-center lg:grid-cols-[256px_256px_256px] xl:grid-cols-[256px_256px_256px_256px] 2xl:grid-cols-[256px_256px_256px_256px_256px]">
+          {menuData.map((pizza: IPizzaMenuItem) => (
+            <PizzaCard key={`${pizza._id}`} pizza={pizza} />
+          ))}
+        </ul>
+      )}
     </section>
   );
 }
