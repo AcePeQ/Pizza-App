@@ -48,6 +48,7 @@ export async function loginToAccountApi(accountData: ILoginData) {
       },
       method: "POST",
       body: JSON.stringify(accountData),
+      credentials: "include",
     });
 
     if (!res.ok) {
