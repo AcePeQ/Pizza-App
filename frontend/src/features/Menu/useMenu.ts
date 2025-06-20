@@ -4,7 +4,7 @@ import { IFiltersState } from "./PizzaFilters/PizzaFilters";
 
 export function useMenu(filters: IFiltersState) {
   const {
-    isPending: isGettingMenu,
+    isFetching: isGettingMenu,
     isError: isMenuError,
     error: menuError,
     data: menuData,
