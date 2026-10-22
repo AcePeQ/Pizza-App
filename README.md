@@ -53,7 +53,7 @@ The app lets users browse a pizza menu, filter and sort available pizzas, manage
 
 ### Backend
 
-- Node.js
+- Node.js 24.22.1
 - Express
 - TypeScript
 - MongoDB
